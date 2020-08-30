@@ -32,17 +32,16 @@
             <p>Or sign in manually:</p>
           </div>
 
-          <form [formGroup]="loginForm">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <label>
-              Login
-              <input type="text" formControlName="login" required>
+              Email
+              <input type="text" formControlName="email" required>
             </label>
-          
             <label>
               Password
               <input type="password" formControlName="password">
             </label>
-            <button type="submit" [disabled]="">Submit</button>
+            <button type="submit" [disabled]="false">Submit</button>
           </form>
         </div>
 
