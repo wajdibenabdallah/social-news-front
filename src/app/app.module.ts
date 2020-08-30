@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AlertComponent } from './alert/alert.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
@@ -12,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
+import { AlertComponent } from './shared/alert/alert.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -22,11 +22,11 @@ const JWT_Module_Options: JwtModuleOptions = {
 @NgModule({
   declarations: [
     AppComponent,
-    AlertComponent,
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
