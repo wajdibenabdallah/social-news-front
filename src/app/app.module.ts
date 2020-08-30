@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { AuthGuardService } from './core/auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -11,6 +11,13 @@ import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
+import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
+
+const JWT_Module_Options: JwtModuleOptions = {
+  config: {
+    throwNoTokenError: false,
+  }
+};
 
 @NgModule({
   declarations: [
@@ -25,9 +32,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot(JWT_Module_Options)
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

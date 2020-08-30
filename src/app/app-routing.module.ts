@@ -1,4 +1,4 @@
-import { AuthService as AuthGuard } from './Core/auth.service';
+import { AuthGuardService } from './core/auth-guard.service';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuardService]
   },
   { path: '**', redirectTo: '' }
 ];
