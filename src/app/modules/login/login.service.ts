@@ -23,7 +23,7 @@ export class LoginService {
     );
   }
 
-  onSuccess(data: any) {
+  onSuccess(data: any): void {
     localStorage.setItem('token', data.token);
     this.router.navigate(['profile']);
   }

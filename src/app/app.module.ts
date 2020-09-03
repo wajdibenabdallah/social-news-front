@@ -1,3 +1,4 @@
+import { TokenInterceptorService } from './shared/service/token-interceptor.service';
 import { AuthGuardService } from './core/auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -8,14 +9,14 @@ import { RegisterComponent } from './modules/register/register.component';
 import { HomeComponent } from './modules/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './modules/profile/profile.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { AlertComponent } from './shared/component/alert/alert.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
     throwNoTokenError: false,
-  }
+  },
 };
 
 @NgModule({
@@ -25,16 +26,23 @@ const JWT_Module_Options: JwtModuleOptions = {
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    AlertComponent
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    JwtModule.forRoot(JWT_Module_Options)
+    JwtModule.forRoot(JWT_Module_Options),
   ],
-  providers: [AuthGuardService],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
