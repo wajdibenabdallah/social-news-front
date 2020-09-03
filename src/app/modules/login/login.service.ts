@@ -1,9 +1,9 @@
-import { AlertService } from './../shared/component/alert/alert.service';
-import { AlertComponent } from '../shared/component/alert/alert.component';
+import { AlertService } from '../../shared/component/alert/alert.service';
+import { AlertComponent } from '../../shared/component/alert/alert.component';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../shared/model/user';
+import { User } from '../../shared/model/user';
 import { Subject, Observable } from 'rxjs';
 
 @Injectable({
