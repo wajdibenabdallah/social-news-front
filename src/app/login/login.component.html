@@ -2,7 +2,6 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -10,7 +9,6 @@
   <div class="container">
     <div>
       <div class="row">
-        <h2 style="text-align:center">Login with Social Media or Manually</h2>
         <div class="vl">
           <span class="vl-innertext">or</span>
         </div>
@@ -33,33 +31,27 @@
           </div>
 
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <label>
-              Email
-              <input type="text" formControlName="email" required>
-            </label>
-            <label>
-              Password
-              <input type="password" formControlName="password">
-            </label>
-            <button type="submit" [disabled]="false">Submit</button>
+            <div class="row">
+              <label>
+                Email
+                <input type="text" formControlName="email" required>
+              </label>
+            </div>
+            <div class="row">
+              <label>
+                Password
+                <input type="password" formControlName="password" required>
+              </label>
+            </div>
+            <div class="row">
+              <button type="submit" [disabled]="false">Login</button>
+            </div>
           </form>
         </div>
 
       </div>
     </div>
   </div>
-
-  <div class="bottom-container">
-    <div class="row">
-      <div class="col">
-        <a href="#" style="color:white" class="btn">Sign up</a>
-      </div>
-      <div class="col">
-        <a href="#" style="color:white" class="btn">Forgot password?</a>
-      </div>
-    </div>
-  </div>
-
 </body>
 
 </html>
