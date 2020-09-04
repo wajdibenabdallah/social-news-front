@@ -30,4 +30,8 @@ export class AuthGuardService implements CanActivate {
     }
     return true;
   }
+
+  public logout() {
+    return localStorage.removeItem('token');
+  }
 }

@@ -30,7 +30,6 @@ export class LoginService {
   }
 
   onError(error: HttpErrorResponse): void {
-    console.log(error);
     const alert: Alert = {
       title: error.error.info.message || 'Test',
       message: error.error.info.message,
