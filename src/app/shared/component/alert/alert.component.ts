@@ -1,3 +1,4 @@
+import { Alert } from './../../model/alert';
 import { AlertService } from './alert.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
@@ -10,10 +11,14 @@ export class AlertComponent implements OnInit {
   constructor(private service: AlertService) {}
 
   @ViewChild('alert') alert: ElementRef;
+  @ViewChild('title') title: ElementRef;
+  @ViewChild('message') message: ElementRef;
 
   ngOnInit() {
-    this.service.getObservable().subscribe((alert) => {
+    this.service.getObservable().subscribe((alert: Alert) => {
       this.alert.nativeElement.classList.add('show');
+      this.title.nativeElement.innerHTML = alert.title;
+      this.message.nativeElement.innerHTML = alert.message;
     });
   }
 
