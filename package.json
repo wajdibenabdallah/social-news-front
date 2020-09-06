@@ -1,6 +1,6 @@
 {
-  "name": "auth-app",
-  "version": "0.0.1",
+  "name": "cra-angular",
+  "version": "0.0.3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
