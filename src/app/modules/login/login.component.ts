@@ -1,19 +1,19 @@
-import { LoginService } from "./login.service";
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
-import { Router } from "@angular/router";
-import { Alert } from "src/app/shared/model/alert";
-import { AlertService } from "src/app/shared/component/alert/alert.service";
+import { LoginService } from './login.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ALERT_TYPE, Alert } from 'src/app/shared/model/alert';
+import { AlertService } from 'src/app/shared/component/alert/alert.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   loginForm = this.fb.group({
-    email: [""],
-    password: [""],
+    email: [''],
+    password: [''],
   });
 
   constructor(
@@ -31,14 +31,28 @@ export class LoginComponent {
   }
 
   onSuccess(data: any): void {
-    localStorage.setItem("token", data.token);
-    this.router.navigate(["profile"]);
+    localStorage.setItem('token', data.token);
+    this.router.navigate(['profile']);
   }
 
-  onError(error: string): void {
+  onError(error: any): void {
+    console.log(error);
+    let title: string;
+    let message: string;
+
+    switch (error.status) {
+      case 401:
+        title = 'Problème d\'authentifcation';
+        message = 'Vérifier votre email ou mot de passe';
+        break;
+      default:
+        title = 'Problème de serveur';
+        message = 'Impossible de connecter au serveur';
+    }
     const alert: Alert = {
-      title: error || "Test",
-      message: error,
+      title: title,
+      message: message,
+      type: ALERT_TYPE.ERROR
     };
     this._alertService.newAlert(alert);
   }

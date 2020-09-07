@@ -1,5 +1,5 @@
-import { AuthGuardService } from "./../../core/auth-guard.service";
-import { Injectable } from "@angular/core";
+import { AuthGuardService } from './../../core/auth-guard.service';
+import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -7,12 +7,12 @@ import {
   HttpInterceptor,
   HttpResponse,
   HttpErrorResponse,
-} from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { map, catchError, retry } from "rxjs/operators";
+} from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError, retry } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class TokenInterceptorService implements HttpInterceptor {
   constructor(private auth: AuthGuardService) {}
@@ -22,7 +22,7 @@ export class TokenInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((errorResponse: HttpErrorResponse) => {
-        return throwError(errorResponse.error.info.message);
+        return throwError(errorResponse);
       })
     );
   }
