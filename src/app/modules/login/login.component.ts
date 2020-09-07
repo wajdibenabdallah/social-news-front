@@ -1,6 +1,6 @@
 import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ALERT_TYPE, Alert } from 'src/app/shared/model/alert';
 import { AlertService } from 'src/app/shared/component/alert/alert.service';
@@ -11,9 +11,9 @@ import { AlertService } from 'src/app/shared/component/alert/alert.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  loginForm = this.fb.group({
-    email: [''],
-    password: [''],
+  form = this.fb.group({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: ['', Validators.required],
   });
 
   constructor(
@@ -24,7 +24,9 @@ export class LoginComponent {
   ) {}
 
   onSubmit() {
-    this.service.login(this.loginForm.value).subscribe(
+    console.log(this.form.controls);
+    console.log(this.form.valid);
+    this.service.login(this.form.value).subscribe(
       (data) => this.onSuccess(data),
       (error) => this.onError(error)
     );

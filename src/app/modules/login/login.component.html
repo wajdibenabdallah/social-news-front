@@ -1,57 +1,32 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-<body>
-  <div class="container">
-    <div>
+  <body>
+    <div class="container">
       <div class="row">
-        <div class="vl">
-          <span class="vl-innertext">or</span>
-        </div>
-
         <div class="col">
-          <a href="#" class="fb btn">
-            <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-          </a>
-          <a href="#" class="twitter btn">
-            <i class="fa fa-twitter fa-fw"></i> Login with Twitter
-          </a>
-          <a href="#" class="google btn"><i class="fa fa-google fa-fw">
-            </i> Login with Google+
-          </a>
-        </div>
-
-        <div class="col">
-          <div class="hide-md-lg">
-            <p>Or sign in manually:</p>
-          </div>
-
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="row">
               <label>
                 Email
-                <input type="text" formControlName="email" required>
+                <input
+                  type="text"
+                  formControlName="email"
+                  [ngStyle]="{'outline': (form.get('email').invalid && form.get('email').touched) ? 'red solid 2px' : 'green solid 2px' }"
+                />
               </label>
             </div>
             <div class="row">
               <label>
                 Password
-                <input type="password" formControlName="password" required>
+                <input type="password" formControlName="password" />
               </label>
             </div>
             <div class="row">
-              <button type="submit" [disabled]="false">Login</button>
+              <button type="submit" [disabled]="form.invalid">Login</button>
             </div>
           </form>
         </div>
-
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
