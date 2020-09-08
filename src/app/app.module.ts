@@ -35,7 +35,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    AlertComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,11 @@
 <mat-card class="register-card">
   <mat-card-content>
     <mat-card-header>
-      <div class=""></div>
-      <mat-card-title>Register</mat-card-title>
-      <mat-card-subtitle>Register</mat-card-subtitle>
+      <mat-card-title></mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
     </mat-card-header>
-    <form class="">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-grid-list cols="2" rowHeight="3:1">
         <mat-grid-tile>
           <mat-form-field class="field">
@@ -13,46 +13,86 @@
               matInput
               type="text"
               placeholder="Firstname"
-            /> </mat-form-field
-        ></mat-grid-tile>
+              formControlName="firstName"
+            />
+            <mat-error *ngIf="firstName.invalid"
+              >{{ getFieldError(firstName.errors) }}</mat-error
+            >
+          </mat-form-field>
+        </mat-grid-tile>
+
         <mat-grid-tile>
           <mat-form-field class="">
             <input
               type="text"
               matInput
               placeholder="Lastname"
-            /> </mat-form-field
-        ></mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field class="">
-            <input type="email" matInput placeholder="Email" /> </mat-form-field
-        ></mat-grid-tile>
+              formControlName="lastName"
+            />
+            <mat-error *ngIf="lastName.invalid"
+              >{{ getFieldError(lastName.errors) }}</mat-error
+            >
+          </mat-form-field>
+        </mat-grid-tile>
+
         <mat-grid-tile>
           <mat-form-field class="">
             <input
-              type="number"
+              type="email"
               matInput
-              placeholder="Phone"
-            /> </mat-form-field
-        ></mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field class="">
-            <input type="password" matInput placeholder="Password" />
+              placeholder="Email"
+              formControlName="email"
+            />
+            <mat-error *ngIf="email.invalid">{{ getFieldError(email.errors) }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field class="">
+            <input
+              type="text"
+              matInput
+              placeholder="Phone"
+              formControlName="phone"
+            />
+            <mat-error *ngIf="phone.invalid">{{ getFieldError(phone.errors) }}</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field class="">
+            <input
+              type="password"
+              matInput
+              placeholder="Password"
+              formControlName="password"
+            />
+            <mat-error *ngIf="password.invalid"
+              >{{ getFieldError(password.errors) }}</mat-error
+            >
+          </mat-form-field>
+        </mat-grid-tile>
+
         <mat-grid-tile>
           <mat-form-field class="">
             <input
               type="password"
               matInput
               placeholder="Confirm Password"
-            /> </mat-form-field
-        ></mat-grid-tile>
-        <mat-grid-tile>
-            
+              formControlName="confirmPassword"
+            />
+            <mat-error *ngIf="confirmPassword.invalid"
+              >{{ getFieldError(confirmPassword.errors) }}</mat-error
+            >
+          </mat-form-field>
         </mat-grid-tile>
+
+        <mat-grid-tile></mat-grid-tile>
+
         <mat-grid-tile>
-          <button mat-raised-button color="primary">Register</button>
+          <button type="submit" mat-raised-button color="primary">
+            Register
+          </button>
         </mat-grid-tile>
       </mat-grid-list>
     </form>
