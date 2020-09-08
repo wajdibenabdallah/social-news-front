@@ -13,7 +13,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { AlertComponent } from './shared/component/alert/alert.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule, MatInputModule, MatGridListModule, MatButtonModule, MatButtonToggleModule } from '@angular/material';
+import {
+  MatCardModule,
+  MatInputModule,
+  MatGridListModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatExpansionModule,
+} from '@angular/material';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -42,7 +49,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     MatInputModule,
     MatGridListModule,
     MatButtonModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatExpansionModule,
   ],
   providers: [
     AuthGuardService,
