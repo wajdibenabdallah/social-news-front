@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './modules/login/login.component';
 import { RegisterComponent } from './modules/register/register.component';
 import { HomeComponent } from './modules/home/home.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { AlertComponent } from './shared/component/alert/alert.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule, MatInputModule, MatGridListModule, MatButtonModule, MatButtonToggleModule } from '@angular/material';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -34,6 +36,13 @@ const JWT_Module_Options: JwtModuleOptions = {
     ReactiveFormsModule,
     HttpClientModule,
     JwtModule.forRoot(JWT_Module_Options),
+    BrowserAnimationsModule,
+    FormsModule,
+    MatCardModule,
+    MatInputModule,
+    MatGridListModule,
+    MatButtonModule,
+    MatButtonToggleModule
   ],
   providers: [
     AuthGuardService,

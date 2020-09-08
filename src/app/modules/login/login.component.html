@@ -1,32 +1,27 @@
-<!DOCTYPE html>
-<html>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="row">
-              <label>
-                Email
-                <input
-                  type="text"
-                  formControlName="email"
-                  [ngStyle]="{'outline': (form.get('email').invalid && form.get('email').touched) ? 'red solid 2px' : 'green solid 2px' }"
-                />
-              </label>
-            </div>
-            <div class="row">
-              <label>
-                Password
-                <input type="password" formControlName="password" />
-              </label>
-            </div>
-            <div class="row">
-              <button type="submit" [disabled]="form.invalid">Login</button>
-            </div>
-          </form>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <label>
+            Email
+            <input
+              type="text"
+              formControlName="email"
+              [ngStyle]="{'outline': (form.get('email').invalid && form.get('email').touched) ? 'red solid 2px' : 'green solid 2px' }"
+            />
+          </label>
         </div>
-      </div>
+        <div class="row">
+          <label>
+            Password
+            <input type="password" formControlName="password" />
+          </label>
+        </div>
+        <div class="row">
+          <button type="submit" [disabled]="form.invalid">Login</button>
+        </div>
+      </form>
     </div>
-  </body>
-</html>
+  </div>
+</div>
