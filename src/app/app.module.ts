@@ -21,6 +21,7 @@ import {
   MatButtonToggleModule,
   MatExpansionModule,
 } from '@angular/material';
+import { PhoneDirective } from './shared/directive/phone.directive';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -35,7 +36,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    AlertComponent
+    AlertComponent,
+    PhoneDirective
   ],
   imports: [
     BrowserModule,

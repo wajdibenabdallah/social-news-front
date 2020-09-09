@@ -43,19 +43,24 @@
               placeholder="Email"
               formControlName="email"
             />
-            <mat-error *ngIf="email.invalid">{{ getFieldError(email.errors) }}</mat-error>
+            <mat-error *ngIf="email.invalid"
+              >{{ getFieldError(email.errors) }}</mat-error
+            >
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-form-field class="">
             <input
+              appPhone
               type="text"
               matInput
               placeholder="Phone"
               formControlName="phone"
             />
-            <mat-error *ngIf="phone.invalid">{{ getFieldError(phone.errors) }}</mat-error>
+            <mat-error *ngIf="phone.invalid"
+              >{{ getFieldError(phone.errors) }}</mat-error
+            >
           </mat-form-field>
         </mat-grid-tile>
 

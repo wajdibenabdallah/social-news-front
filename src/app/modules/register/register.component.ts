@@ -20,11 +20,11 @@ export class RegisterComponent implements OnInit {
     this.form = this.fb.group({
       firstName: new FormControl('', [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(5),
       ]),
       lastName: new FormControl('', [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(5),
       ]),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl(
