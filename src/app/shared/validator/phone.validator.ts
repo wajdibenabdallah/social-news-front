@@ -7,7 +7,7 @@ export function phoneValidator(): ValidatorFn {
       isValid = false;
     }
     return {
-      phone: 'Error with phone',
+      phone: isValid,
     };
   };
 }

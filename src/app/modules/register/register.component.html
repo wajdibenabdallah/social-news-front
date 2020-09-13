@@ -75,6 +75,9 @@
             <mat-error *ngIf="password.invalid"
               >{{ getFieldError(password.errors) }}</mat-error
             >
+            <mat-error *ngIf="form.invalid"
+              >Bad</mat-error
+            >
           </mat-form-field>
         </mat-grid-tile>
 
@@ -89,13 +92,16 @@
             <mat-error *ngIf="confirmPassword.invalid"
               >{{ getFieldError(confirmPassword.errors) }}</mat-error
             >
+            <mat-error *ngIf="form.valid"
+              >Whattttt ???</mat-error
+            >
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile></mat-grid-tile>
 
         <mat-grid-tile>
-          <button type="submit" mat-raised-button color="primary">
+          <button [disabled]="form.invalid" type="submit" mat-raised-button color="primary">
             Register
           </button>
         </mat-grid-tile>

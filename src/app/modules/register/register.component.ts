@@ -4,42 +4,53 @@ import {
   FormControl,
   Validators,
   ValidationErrors,
+  ValidatorFn,
 } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { phoneValidator } from 'src/app/shared/validator/phone.validator';
+import { passwordValidator } from 'src/app/shared/validator/password.validator';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
-  private form: FormGroup;
-
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      firstName: new FormControl('', [
+export class RegisterComponent implements OnInit, OnChanges {
+  private form: FormGroup = this.fb.group(
+    {
+      firstName: new FormControl('Wajdi', [
         Validators.required,
         Validators.minLength(5),
+        Validators.maxLength(20),
       ]),
-      lastName: new FormControl('', [
+      lastName: new FormControl('Ben Abdallah', [
         Validators.required,
         Validators.minLength(5),
+        Validators.maxLength(20),
       ]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('wajdibabdallah@gmail.com', [
+        Validators.required,
+        Validators.email,
+      ]),
       phone: new FormControl(
-        '',
-        Validators.compose([Validators.required, phoneValidator()])
+        '+33 6 11 76 29 07',
+        Validators.compose([Validators.required, phoneValidator])
       ),
-      password: new FormControl('', []),
-      confirmPassword: new FormControl('', []),
-    });
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      confirmPassword: new FormControl('', [Validators.required]),
+    },
+    { validator: passwordValidator }
+  );
+  constructor(private fb: FormBuilder) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
   }
 
   ngOnInit() {}
 
   onSubmit() {
-    console.log(this.form.controls);
+    console.log(this.form);
   }
 
   getFieldError(field: ValidationErrors): string {
