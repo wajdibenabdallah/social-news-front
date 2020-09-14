@@ -1,5 +1,5 @@
 import { LoginService } from './login.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ALERT_TYPE, Alert } from 'src/app/shared/model/alert';
@@ -24,8 +24,6 @@ export class LoginComponent {
   ) {}
 
   onSubmit() {
-    console.log(this.form.controls);
-    console.log(this.form.valid);
     this.service.login(this.form.value).subscribe(
       (data) => this.onSuccess(data),
       (error) => this.onError(error)

@@ -1,8 +1,5 @@
-import { Alert } from './../../shared/model/alert';
-import { AlertService } from '../../shared/component/alert/alert.service';
-import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../../shared/model/user';
 import { Observable } from 'rxjs';
 
@@ -10,11 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private _alertService: AlertService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   login(value: User): Observable<any> {
     return this.http.post('http://localhost:4000/api/login', value);

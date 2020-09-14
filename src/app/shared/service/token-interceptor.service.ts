@@ -20,8 +20,10 @@ export class TokenInterceptorService implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    console.log('intercept');
     return next.handle(request).pipe(
       catchError((errorResponse: HttpErrorResponse) => {
+        console.log(errorResponse);
         return throwError(errorResponse);
       })
     );

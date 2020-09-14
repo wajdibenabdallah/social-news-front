@@ -1,10 +1,11 @@
+import { User } from './../../shared/model/user';
+import { RegisterService } from './register.service';
 import {
   FormBuilder,
   FormGroup,
   FormControl,
   Validators,
   ValidationErrors,
-  ValidatorFn,
 } from '@angular/forms';
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { phoneValidator } from 'src/app/shared/validator/phone.validator';
@@ -15,7 +16,7 @@ import { passwordValidator } from 'src/app/shared/validator/password.validator';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit, OnChanges {
+export class RegisterComponent implements OnInit {
   private form: FormGroup = this.fb.group(
     {
       firstName: new FormControl('Wajdi', [
@@ -36,21 +37,23 @@ export class RegisterComponent implements OnInit, OnChanges {
         '+33 6 11 76 29 07',
         Validators.compose([Validators.required, phoneValidator])
       ),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
       confirmPassword: new FormControl('', [Validators.required]),
     },
     { validator: passwordValidator }
   );
-  constructor(private fb: FormBuilder) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-  }
+  constructor(private fb: FormBuilder, private service: RegisterService) {}
 
   ngOnInit() {}
 
   onSubmit() {
-    console.log(this.form);
+    if (this.form.valid && (this.form.value as User)) {
+      this.service.register(this.form.value).subscribe(data => console.log(data));
+    }
   }
 
   getFieldError(field: ValidationErrors): string {

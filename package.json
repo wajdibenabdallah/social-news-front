@@ -1,9 +1,9 @@
 {
-  "name": "cra-angular",
+  "name": "dev-game",
   "version": "0.0.3",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
