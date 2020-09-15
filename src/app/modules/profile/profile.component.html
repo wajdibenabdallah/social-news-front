@@ -1,5 +1,21 @@
-<p>
-  profile works!
-</p>
-
-<a href="" (click)="logout()">logout</a>
+<mat-card class="left-panel">
+  <mat-card-header>
+    <div class="logout-button">
+      <button mat-icon-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+    <div mat-card-avatar class="profile-avatar"></div>
+    <mat-card-title>Wajdi</mat-card-title>
+    <mat-card-subtitle>Ben Abdallah</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Bonjour, Je suis ingénieur informaticien
+    </p>
+  </mat-card-content>
+  <mat-card-actions> </mat-card-actions>
+</mat-card>
+<mat-card class="main-panel">
+  This is my profile
+</mat-card>

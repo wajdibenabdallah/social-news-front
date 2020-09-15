@@ -20,6 +20,8 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatExpansionModule,
+  MatMenuModule,
+  MatIconModule,
 } from '@angular/material';
 import { PhoneDirective } from './shared/directive/phone.directive';
 
@@ -37,7 +39,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     HomeComponent,
     ProfileComponent,
     AlertComponent,
-    PhoneDirective
+    PhoneDirective,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     MatButtonModule,
     MatButtonToggleModule,
     MatExpansionModule,
+    MatMenuModule,
+    MatIconModule,
   ],
   providers: [
     AuthGuardService,

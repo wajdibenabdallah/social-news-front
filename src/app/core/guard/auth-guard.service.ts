@@ -29,5 +29,6 @@ export class AuthGuardService implements CanActivate {
 
   public logout(): void {
     localStorage.removeItem('token');
+    this.router.navigate(['/']);
   }
 }

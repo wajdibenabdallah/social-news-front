@@ -1,0 +1,20 @@
+.main-panel {
+  width: 80%;
+  height: 90%;
+  float: right;
+}
+
+.left-panel {
+  width: 20%;
+  float: left;
+}
+
+.profile-avatar {
+  background-image: url('/assets/images/avatar.png');
+  background-size: cover;
+}
+
+.logout-button {
+  right: 0px;
+  position: absolute;
+}
