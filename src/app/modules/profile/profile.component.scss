@@ -1,12 +1,15 @@
 .main-panel {
-  width: 80%;
-  height: 90%;
+  width: 77%;
   float: right;
+  min-height: 500px;
+  position: absolute;
+  margin: 1% 0% 0% 22%;
 }
 
 .left-panel {
   width: 20%;
   float: left;
+  margin: 1%;
 }
 
 .profile-avatar {

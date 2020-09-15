@@ -14,8 +14,14 @@
       Bonjour, Je suis ingénieur informaticien
     </p>
   </mat-card-content>
-  <mat-card-actions> </mat-card-actions>
+  <mat-card-actions></mat-card-actions>
 </mat-card>
 <mat-card class="main-panel">
-  This is my profile
+  <mat-tab-group>
+    <mat-tab label="News">
+      <app-post></app-post>
+    </mat-tab>
+    <mat-tab label="Second"> Content 2 </mat-tab>
+    <mat-tab label="Third"> Content 3 </mat-tab>
+  </mat-tab-group>
 </mat-card>
