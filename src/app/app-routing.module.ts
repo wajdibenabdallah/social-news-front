@@ -1,5 +1,5 @@
 import { RegisterComponent } from './modules/register/register.component';
-import { AuthGuardService } from './core/auth-guard.service';
+import { AuthGuardService } from './core/guard/auth-guard.service';
 import { ProfileComponent } from './modules/profile/profile.component';
 import { HomeComponent } from './modules/home/home.component';
 import { NgModule } from '@angular/core';

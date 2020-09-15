@@ -1,3 +1,5 @@
+import { AlertService } from 'src/app/shared/component/alert/alert.service';
+import { Router } from '@angular/router';
 import { User } from './../../shared/model/user';
 import { RegisterService } from './register.service';
 import {
@@ -10,6 +12,7 @@ import {
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { phoneValidator } from 'src/app/shared/validator/phone.validator';
 import { passwordValidator } from 'src/app/shared/validator/password.validator';
+import { Alert, ALERT_TYPE } from 'src/app/shared/model/alert';
 
 @Component({
   selector: 'app-register',
@@ -46,13 +49,31 @@ export class RegisterComponent implements OnInit {
     { validator: passwordValidator }
   );
 
-  constructor(private fb: FormBuilder, private service: RegisterService) {}
+  constructor(
+    private fb: FormBuilder,
+    private service: RegisterService,
+    private router: Router,
+    private alert: AlertService
+  ) {}
 
   ngOnInit() {}
 
   onSubmit() {
     if (this.form.valid && (this.form.value as User)) {
-      this.service.register(this.form.value).subscribe(data => console.log(data));
+      this.service.register(this.form.value).subscribe(
+        (data) => {
+          localStorage.setItem('token', data.token);
+          this.router.navigate(['profile']);
+        },
+        (error) => {
+          const alert: Alert = {
+            title: 'Erreur d\'inscrpition',
+            message: 'email existe déja ',
+            type: ALERT_TYPE.ERROR,
+          };
+          this.alert.newAlert(alert);
+        }
+      );
     }
   }
 

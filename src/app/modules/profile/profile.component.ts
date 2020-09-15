@@ -1,4 +1,4 @@
-import { AuthGuardService } from './../../core/auth-guard.service';
+import { AuthGuardService } from '../../core/guard/auth-guard.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

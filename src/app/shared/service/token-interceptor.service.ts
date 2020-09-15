@@ -1,4 +1,4 @@
-import { AuthGuardService } from './../../core/auth-guard.service';
+import { AuthGuardService } from '../../core/guard/auth-guard.service';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -20,10 +20,10 @@ export class TokenInterceptorService implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('intercept');
+    // console.log('intercept');
     return next.handle(request).pipe(
       catchError((errorResponse: HttpErrorResponse) => {
-        console.log(errorResponse);
+        // console.log(errorResponse);
         return throwError(errorResponse);
       })
     );
