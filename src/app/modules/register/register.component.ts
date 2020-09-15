@@ -67,8 +67,8 @@ export class RegisterComponent implements OnInit {
         },
         (error) => {
           const alert: Alert = {
-            title: 'Erreur d\'inscrpition',
-            message: 'email existe déja ',
+            title: `Erreur d'inscrpition`,
+            message: `Email existe déja`,
             type: ALERT_TYPE.ERROR,
           };
           this.alert.newAlert(alert);

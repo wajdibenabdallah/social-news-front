@@ -4,17 +4,14 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  constructor(private authGuard: AuthGuardService) {}
 
-  constructor(private authGuard: AuthGuardService) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  private logout() {
+  public logout() {
     this.authGuard.logout();
   }
-
 }

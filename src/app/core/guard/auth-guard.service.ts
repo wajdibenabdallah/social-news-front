@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
   Router,
-  CanActivate,
-  CanActivateChild,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
+  CanActivate
 } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,11 +15,11 @@ export class AuthGuardService implements CanActivate {
     return !this.jwtHelper.isTokenExpired(this.getToken());
   }
 
-  public getToken() {
+  public getToken(): string {
     return localStorage.getItem('token');
   }
 
-  public canActivate() {
+  public canActivate(): boolean {
     if (!this.isAuthenticated()) {
       this.router.navigate(['/']);
       return false;
@@ -31,7 +27,7 @@ export class AuthGuardService implements CanActivate {
     return true;
   }
 
-  public logout() {
-    return localStorage.removeItem('token');
+  public logout(): void {
+    localStorage.removeItem('token');
   }
 }

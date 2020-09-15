@@ -1,3 +1,4 @@
+import { CONFIG } from './../../config/server';
 import { Alert, ALERT_TYPE } from './../../model/alert';
 import { AlertService } from './alert.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
@@ -34,7 +35,7 @@ export class AlertComponent implements OnInit {
       }
       setTimeout(() => {
         this.alert.nativeElement.classList.remove('show');
-      }, 3000);
+      }, CONFIG.displayingAlertDelay * 1000);
     });
   }
 

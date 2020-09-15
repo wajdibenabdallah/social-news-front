@@ -86,7 +86,8 @@
               placeholder="Confirm Password"
               formControlName="confirmPassword"
             />
-            <mat-error *ngIf="confirmPassword.touched && confirmPassword.invalid"
+            <mat-error
+              *ngIf="confirmPassword.touched && confirmPassword.invalid"
               >{{ getFieldError(confirmPassword.errors) }}</mat-error
             >
             <mat-error *ngIf="!form.errors?.matchPassword"
@@ -98,7 +99,12 @@
         <mat-grid-tile></mat-grid-tile>
 
         <mat-grid-tile>
-          <button [disabled]="form.invalid" type="submit" mat-raised-button color="primary">
+          <button
+            [disabled]="form.invalid"
+            type="submit"
+            mat-raised-button
+            color="primary"
+          >
             Register
           </button>
         </mat-grid-tile>

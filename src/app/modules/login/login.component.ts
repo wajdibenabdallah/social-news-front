@@ -19,7 +19,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private service: LoginService,
-    private _alertService: AlertService,
+    private alert: AlertService,
     private router: Router
   ) {}
 
@@ -36,7 +36,6 @@ export class LoginComponent {
   }
 
   onError(error: any): void {
-    console.log(error);
     let title: string;
     let message: string;
 
@@ -52,8 +51,8 @@ export class LoginComponent {
     const alert: Alert = {
       title: title,
       message: message,
-      type: ALERT_TYPE.ERROR
+      type: ALERT_TYPE.ERROR,
     };
-    this._alertService.newAlert(alert);
+    this.alert.newAlert(alert);
   }
 }
