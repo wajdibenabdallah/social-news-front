@@ -1,27 +1,51 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="row">
-          <label>
-            Email
+<mat-card class="login-card">
+  <mat-card-content>
+    <mat-card-header>
+      <mat-card-title></mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-grid-list cols="1" rowHeight="100px">
+        <mat-grid-tile>
+          <mat-form-field class="field">
             <input
-              type="text"
+              matInput
+              type="email"
+              placeholder="Email"
               formControlName="email"
-              [ngStyle]="{'outline': (form.get('email').invalid && form.get('email').touched) ? 'red solid 2px' : 'green solid 2px' }"
             />
-          </label>
-        </div>
-        <div class="row">
-          <label>
-            Password
-            <input type="password" formControlName="password" />
-          </label>
-        </div>
-        <div class="row">
-          <button type="submit" [disabled]="form.invalid">Login</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+            <mat-error *ngIf="email?.touched && email?.invalid"
+              >{{ getFieldError(email.errors) }}</mat-error
+            >
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field class="">
+            <input
+              type="password"
+              matInput
+              placeholder="Password"
+              formControlName="password"
+            />
+            <mat-error *ngIf="password?.touched && password?.invalid"
+              >{{ getFieldError(password.errors) }}</mat-error
+            >
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <button
+            [disabled]="form.invalid"
+            type="submit"
+            mat-raised-button
+            color="primary"
+          >
+            Login
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,6 +1,11 @@
 import { LoginService } from './login.service';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ALERT_TYPE, Alert } from 'src/app/shared/model/alert';
 import { AlertService } from 'src/app/shared/component/alert/alert.service';
@@ -11,7 +16,7 @@ import { AlertService } from 'src/app/shared/component/alert/alert.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  form = this.fb.group({
+  private form = this.fb.group({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: ['', Validators.required],
   });
@@ -41,7 +46,7 @@ export class LoginComponent {
 
     switch (error.status) {
       case 401:
-        title = 'Problème d\'authentifcation';
+        title = "Problème d'authentifcation";
         message = 'Vérifier votre email ou mot de passe';
         break;
       default:
@@ -54,5 +59,22 @@ export class LoginComponent {
       type: ALERT_TYPE.ERROR,
     };
     this.alert.newAlert(alert);
+  }
+
+  getFieldError(field: ValidationErrors): string {
+    if (field.hasOwnProperty('required') && field.required) {
+      return 'Ce champ est Obligatoire';
+    }
+    if (field.hasOwnProperty('email') && field.email) {
+      return `Email invalide`;
+    }
+  }
+
+  get email() {
+    return this.form.get('email') as FormControl;
+  }
+
+  get password() {
+    return this.form.get('password') as FormControl;
   }
 }
