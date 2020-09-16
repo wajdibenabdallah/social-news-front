@@ -5,13 +5,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PostService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  fetchAll (): Observable<Post[]> {
+  fetchAll(): Observable<Post[]> {
     return this.http.get<Post[]>(`${CONFIG.baseUrl}/api/post`);
   }
 }
