@@ -9,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileComponent implements OnInit {
   constructor(private authGuard: AuthGuardService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // get all posts
+  }
 
   public logout() {
     this.authGuard.logout();
