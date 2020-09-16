@@ -10,16 +10,14 @@
     <mat-card-subtitle>Ben Abdallah</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <p>
-      Bonjour, Je suis ingénieur informaticien
-    </p>
+    <p>Bonjour, Je suis ingénieur informaticien</p>
   </mat-card-content>
   <mat-card-actions></mat-card-actions>
 </mat-card>
 <mat-card class="main-panel">
   <mat-tab-group>
     <mat-tab label="News">
-      <app-post></app-post>
+      <app-post *ngFor="let post of posts$ | async"></app-post>
     </mat-tab>
     <mat-tab label="Second"> Content 2 </mat-tab>
     <mat-tab label="Third"> Content 3 </mat-tab>

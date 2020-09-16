@@ -27,7 +27,6 @@ export class TokenInterceptorService implements HttpInterceptor {
     });
     return next.handle(request).pipe(
       catchError((errorResponse: HttpErrorResponse) => {
-        // console.log(errorResponse);
         return throwError(errorResponse);
       })
     );
