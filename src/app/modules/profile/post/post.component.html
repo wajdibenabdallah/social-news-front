@@ -4,13 +4,24 @@
     <mat-card-title>Anwer Ben Abdallah</mat-card-title>
     <mat-card-subtitle>What's the news ?</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="/assets/images/test_post.jpg" alt="Just for test" class="image-post" />
   <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz
-      breeds of dog from Japan. A small, agile dog that copes very well with
-      mountainous terrain, the Shiba Inu was originally bred for hunting.
-    </p>
+    <mat-grid-list cols="10" rows="1">
+      <mat-grid-tile [colspan]="3" [rowspan]="2">
+        <img
+          mat-card-image
+          src="/assets/images/test_post.jpg"
+          alt="Just for test"
+          class="image-post"
+        />
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="7" [rowspan]="1">
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz
+          breeds of dog from Japan. A small, agile dog that copes very well with
+          mountainous terrain, the Shiba Inu was originally bred for hunting.
+        </p>
+      </mat-grid-tile>
+    </mat-grid-list>
   </mat-card-content>
   <mat-card-actions>
     <button mat-button>LIKE</button>

@@ -1,15 +1,18 @@
 .main-panel {
   width: 77%;
   float: right;
-  min-height: 500px;
   position: absolute;
   margin: 1% 0% 0% 22%;
+  height: 90% !important;
+  overflow-y: scroll;
 }
 
 .left-panel {
+  position: absolute;
   width: 20%;
   float: left;
   margin: 1%;
+  height: 90% !important;
 }
 
 .profile-avatar {
@@ -20,4 +23,28 @@
 .logout-button {
   right: 0px;
   position: absolute;
+}
+
+.settings {
+  margin: 5px;
+  height: 10px;
+}
+
+.my-fab {
+  width: 20px;
+  height: 20px;
+  line-height: 14px;
+  font-size: 14px;
+  bottom: 10px;
+
+  &::ng-deep .mat-button-wrapper {
+    line-height: 14px;
+    padding: 0;
+
+    .mat-icon {
+      font-size: 14px;
+      padding-right: 4px;
+      padding-top: 4px;
+    }
+  }
 }
