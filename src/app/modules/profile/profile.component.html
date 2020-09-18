@@ -18,7 +18,12 @@
   <mat-tab-group>
     <mat-tab label="News">
       <mat-card class="settings"
-        ><button class="my-fab" mat-mini-fab color="primary">
+        ><button
+          class="my-fab"
+          mat-mini-fab
+          color="primary"
+          (click)="newPost()"
+        >
           <mat-icon>post_add</mat-icon>
         </button></mat-card
       >

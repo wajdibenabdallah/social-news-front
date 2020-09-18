@@ -22,10 +22,12 @@ import {
   MatExpansionModule,
   MatMenuModule,
   MatIconModule,
-  MatTabsModule
+  MatTabsModule,
+  MatDialogModule,
 } from '@angular/material';
 import { PhoneDirective } from './shared/directive/phone.directive';
 import { PostComponent } from './modules/profile/post/post.component';
+import { NewPostComponent } from './modules/profile/post/modal/new-post/new-post.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -43,7 +45,9 @@ const JWT_Module_Options: JwtModuleOptions = {
     AlertComponent,
     PhoneDirective,
     PostComponent,
+    NewPostComponent,
   ],
+  entryComponents: [NewPostComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -60,7 +64,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     MatExpansionModule,
     MatMenuModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule,
   ],
   providers: [
     AuthGuardService,
