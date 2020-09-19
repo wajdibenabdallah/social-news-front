@@ -33,6 +33,8 @@ import {
   MaterialFileInputModule,
   NGX_MAT_FILE_INPUT_CONFIG,
 } from 'ngx-material-file-input';
+import { FirstnamePipe } from './shared/pipe/user/firstname.pipe';
+import { LastnamePipe } from './shared/pipe/user/lastname.pipe';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -51,6 +53,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     PhoneDirective,
     PostComponent,
     NewPostComponent,
+    FirstnamePipe,
+    LastnamePipe,
   ],
   entryComponents: [NewPostComponent],
   imports: [

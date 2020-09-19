@@ -30,13 +30,13 @@ export class LoginComponent {
 
   onSubmit() {
     this.service.login(this.form.value).subscribe(
-      (data) => this.onSuccess(data),
+      (data: { token: string }) => this.onSuccess(data.token),
       (error) => this.onError(error)
     );
   }
 
-  onSuccess(data: any): void {
-    localStorage.setItem('token', data.token);
+  onSuccess(token: string): void {
+    localStorage.setItem('token', token);
     this.router.navigate(['profile']);
   }
 
@@ -46,7 +46,7 @@ export class LoginComponent {
 
     switch (error.status) {
       case 401:
-        title = "Problème d'authentifcation";
+        title = 'Problème d authentifcation';
         message = 'Vérifier votre email ou mot de passe';
         break;
       default:

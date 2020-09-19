@@ -6,8 +6,12 @@
       </button>
     </div>
     <div mat-card-avatar class="profile-avatar"></div>
-    <mat-card-title>Wajdi</mat-card-title>
-    <mat-card-subtitle>Ben Abdallah</mat-card-subtitle>
+    <mat-card-title>
+      {{ (user$ | async)?.firstname | titlecase }}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{ (user$ | async)?.lastname | uppercase }}
+    </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <p>Bonjour, Je suis ingénieur informaticien</p>
