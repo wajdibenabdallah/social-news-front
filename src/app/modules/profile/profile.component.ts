@@ -27,12 +27,8 @@ export class ProfileComponent implements OnInit {
 
   newPost(): void {
     const dialogRef = this.newPostModal.open(NewPostComponent, {
-      width: '250px',
-      data: { surname: 'wajdi', name: 'ben abdallah' },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed', result);
+      width: '70%',
+      height: '70%',
     });
   }
 

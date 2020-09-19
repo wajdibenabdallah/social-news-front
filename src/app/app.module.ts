@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { AlertComponent } from './shared/component/alert/alert.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import {
   MatCardModule,
   MatInputModule,
@@ -28,6 +29,10 @@ import {
 import { PhoneDirective } from './shared/directive/phone.directive';
 import { PostComponent } from './modules/profile/post/post.component';
 import { NewPostComponent } from './modules/profile/post/modal/new-post/new-post.component';
+import {
+  MaterialFileInputModule,
+  NGX_MAT_FILE_INPUT_CONFIG,
+} from 'ngx-material-file-input';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -66,6 +71,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     MatIconModule,
     MatTabsModule,
     MatDialogModule,
+    MaterialFileInputModule,
   ],
   providers: [
     AuthGuardService,
@@ -73,6 +79,12 @@ const JWT_Module_Options: JwtModuleOptions = {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true,
+    },
+    {
+      provide: NGX_MAT_FILE_INPUT_CONFIG,
+      useValue: {
+        sizeUnit: 'Octet',
+      },
     },
   ],
   bootstrap: [AppComponent],

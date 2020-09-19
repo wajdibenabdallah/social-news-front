@@ -13,4 +13,8 @@ export class PostService {
   fetchAll(): Observable<Post[]> {
     return this.http.get<Post[]>(`${CONFIG.baseUrl}/api/post`);
   }
+
+  post(post: Post): Observable<Post> {
+    return this.http.post<Post>(`${CONFIG.baseUrl}/api/post`, post);
+  }
 }

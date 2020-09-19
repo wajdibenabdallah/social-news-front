@@ -1,13 +1,45 @@
-<h1 mat-dialog-title>Add New Post</h1>
-<div mat-dialog-content>
-  <mat-form-field>
-    <input matInput placeholder="Title" />
-  </mat-form-field>
-  <mat-form-field>
-    <textarea matInput placeholder="Type your text"></textarea>
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Post</button>
-</div>
+<mat-grid-list cols="4" rowHeight="fit" style="height: 100%">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <h1 mat-dialog-title>Add New Post</h1>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="1">
+      <mat-form-field style="width: 90%">
+        <input formControlName="title" matInput placeholder="Title" />
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="5">
+      <mat-form-field style="width: 90%">
+        <textarea
+          formControlName="text"
+          cdkTextareaAutosize
+          matInput
+          cdkAutosizeMinRows="20"
+          cdkAutosizeMaxRows="50"
+          placeholder="Type your text"
+        ></textarea>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="3"
+      ><mat-form-field style="width: 90%">
+        <ngx-mat-file-input
+          formControlName="image"
+          #removableInput
+          placeholder="Set an image"
+        ></ngx-mat-file-input>
+        <button
+          mat-icon-button
+          matSuffix
+          *ngIf="!removableInput.empty"
+          (click)="removableInput.clear($event)"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-button [disabled]="form.invalid" type="submit">Post</button>
+    </mat-grid-tile>
+  </form>
+</mat-grid-list>
