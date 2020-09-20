@@ -5,17 +5,17 @@
     <mat-card-subtitle>{{ post.data.title }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <mat-grid-list cols="10" rows="1">
-      <mat-grid-tile [colspan]="3" [rowspan]="2">
+    <mat-grid-list cols="10" rowHeight="1:2">
+      <mat-grid-tile class="post-image" [colspan]="3">
         <img
           mat-card-image
           src="{{ post.data.imageUri | imageUri }}"
           alt="Just for test"
-          class="post-image"
+          class="image-resize"
         />
       </mat-grid-tile>
-      <mat-grid-tile [colspan]="7" [rowspan]="1">
-        <p>
+      <mat-grid-tile class="post-text" [colspan]="7">
+        <p class="text-resize">
           {{ post.data.text }}
         </p>
       </mat-grid-tile>
