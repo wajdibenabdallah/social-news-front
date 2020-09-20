@@ -27,7 +27,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     // get user informations
     this.user$ = this.profileService.getCurrentUser();
-    this.user$.subscribe((data) => console.log(data));
     // get all posts
     this.posts$ = this.postService.fetchAll();
   }

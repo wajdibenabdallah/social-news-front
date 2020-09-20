@@ -9,14 +9,14 @@
       <mat-grid-tile [colspan]="3" [rowspan]="2">
         <img
           mat-card-image
-          src="{{ post.data.image }}"
+          src="{{ post.data.imageUri | imageUri }}"
           alt="Just for test"
           class="post-image"
         />
       </mat-grid-tile>
       <mat-grid-tile [colspan]="7" [rowspan]="1">
         <p>
-          {{ post.data.title }}
+          {{ post.data.text }}
         </p>
       </mat-grid-tile>
     </mat-grid-list>

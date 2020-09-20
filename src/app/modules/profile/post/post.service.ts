@@ -14,7 +14,7 @@ export class PostService {
     return this.http.get<Post[]>(`${CONFIG.baseUrl}/api/post`);
   }
 
-  post(post: Post): Observable<Post> {
+  post(post: FormData): Observable<Post> {
     return this.http.post<Post>(`${CONFIG.baseUrl}/api/post`, post);
   }
 }

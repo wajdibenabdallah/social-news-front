@@ -1,4 +1,7 @@
 <mat-grid-list cols="4" rowHeight="fit" style="height: 100%">
+  <div *ngIf="spinner" class="post-spinner">
+    <mat-spinner></mat-spinner>
+  </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <h1 mat-dialog-title>Add New Post</h1>

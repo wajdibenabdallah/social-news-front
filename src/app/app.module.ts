@@ -24,7 +24,7 @@ import {
   MatMenuModule,
   MatIconModule,
   MatTabsModule,
-  MatDialogModule,
+  MatDialogModule,, MatProgressSpinnerModule
 } from '@angular/material';
 import { PhoneDirective } from './shared/directive/phone.directive';
 import { PostComponent } from './modules/profile/post/post.component';
@@ -35,6 +35,7 @@ import {
 } from 'ngx-material-file-input';
 import { FirstnamePipe } from './shared/pipe/user/firstname.pipe';
 import { LastnamePipe } from './shared/pipe/user/lastname.pipe';
+import { ImageUriPipe } from './shared/pipe/post/image-uri.pipe';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -55,6 +56,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     NewPostComponent,
     FirstnamePipe,
     LastnamePipe,
+    ImageUriPipe,
   ],
   entryComponents: [NewPostComponent],
   imports: [
@@ -76,6 +78,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     MatTabsModule,
     MatDialogModule,
     MaterialFileInputModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     AuthGuardService,
