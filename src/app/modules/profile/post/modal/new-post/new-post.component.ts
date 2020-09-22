@@ -1,7 +1,7 @@
 import { Observable, Subscribable, Subscriber } from 'rxjs';
 import { Component, ElementRef, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PostService } from '../../post.service';
 
 @Component({

@@ -14,18 +14,18 @@ import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { AlertComponent } from './shared/component/alert/alert.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {
-  MatCardModule,
-  MatInputModule,
-  MatGridListModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatExpansionModule,
-  MatMenuModule,
-  MatIconModule,
-  MatTabsModule,
-  MatDialogModule,, MatProgressSpinnerModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { PhoneDirective } from './shared/directive/phone.directive';
 import { PostComponent } from './modules/profile/post/post.component';
 import { NewPostComponent } from './modules/profile/post/modal/new-post/new-post.component';
