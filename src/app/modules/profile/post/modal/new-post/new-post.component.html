@@ -38,6 +38,9 @@
         >
           <mat-icon>clear</mat-icon>
         </button>
+        <mat-error *ngIf="image"
+              >{{ getFieldError(image.errors) }}</mat-error
+            >
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1" [rowspan]="1">

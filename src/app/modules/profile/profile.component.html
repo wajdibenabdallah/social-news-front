@@ -21,16 +21,20 @@
 <mat-card class="main-panel">
   <mat-tab-group>
     <mat-tab label="News">
-      <mat-card class="settings"
-        ><button
-          class="my-fab"
-          mat-mini-fab
-          color="primary"
-          (click)="newPost()"
-        >
+      <mat-card class="settings">
+        <button class="my-fab" mat-mini-fab color="primary" (click)="newPost()">
           <mat-icon>post_add</mat-icon>
-        </button></mat-card
-      >
+        </button>
+        <mat-form-field class="search">
+          <input type="text"
+                 placeholder="Search"
+                 matInput
+                 [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+          </mat-autocomplete>
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </mat-card>
       <app-post [post]="post" *ngFor="let post of posts$ | async"></app-post>
     </mat-tab>
     <mat-tab label="Second"> Content 2 </mat-tab>

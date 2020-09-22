@@ -27,24 +27,15 @@
 
 .settings {
   margin: 5px;
-  height: 10px;
+  height: 2%;
+}
+
+.search {
+  float: right !important;
+  width: 30% !important;
+  bottom: 0.1%
 }
 
 .my-fab {
-  width: 20px;
-  height: 20px;
-  line-height: 14px;
-  font-size: 14px;
-  bottom: 10px;
-
-  &::ng-deep .mat-button-wrapper {
-    line-height: 14px;
-    padding: 0;
-
-    .mat-icon {
-      font-size: 14px;
-      padding-right: 4px;
-      padding-top: 4px;
-    }
-  }
+  width: 3%;
 }

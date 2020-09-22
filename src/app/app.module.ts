@@ -25,6 +25,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { PhoneDirective } from './shared/directive/phone.directive';
 import { PostComponent } from './modules/profile/post/post.component';
@@ -78,7 +79,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     MatTabsModule,
     MatDialogModule,
     MaterialFileInputModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatAutocompleteModule,
   ],
   providers: [
     AuthGuardService,

@@ -1,6 +1,6 @@
 import { Observable, Subscribable, Subscriber } from 'rxjs';
 import { Component, ElementRef, Inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PostService } from '../../post.service';
 
@@ -13,7 +13,10 @@ export class NewPostComponent {
   private form = this.fb.group({
     title: ['', Validators.required],
     text: ['', Validators.required],
-    image: ['', Validators.required],
+    image: ['', Validators.compose([
+      Validators.required, 
+      Validators.pattern(/^(.*\.(?!(jpg|png|jpeg)$))?[^.]*$/i)])
+    ]
   });
 
   spinner: boolean;
@@ -51,5 +54,17 @@ export class NewPostComponent {
 
   onCancel(): void {
     this.newPostRef.close();
+  }
+
+  getFieldError(field: ValidationErrors): void {
+    console.log(field);
+    /*
+    if (field.hasOwnProperty('required') && field.required) {
+      return 'Ce champ est Obligatoire';
+    }
+    if (field.hasOwnProperty('email') && field.email) {
+      return `Email invalide`;
+    }
+    */
   }
 }
