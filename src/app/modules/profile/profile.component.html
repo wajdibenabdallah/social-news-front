@@ -29,8 +29,13 @@
           <input type="text"
                  placeholder="Search"
                  matInput
+                 #search
+                 (keyup)="searchPost($event.target.value)"
                  [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete">
+            <mat-option class="search-title" *ngFor="let post of searchPosts$ | async" [value]="post">
+              <span [innerHTML]="post.data.title | highlight: search.value"></span>
+            </mat-option>
           </mat-autocomplete>
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>

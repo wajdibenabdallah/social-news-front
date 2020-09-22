@@ -1,5 +1,5 @@
 import { ProfileService } from './profile.service';
-import { Observable } from 'rxjs';
+import { empty, Observable } from 'rxjs';
 import { PostService } from './post/post.service';
 import { AuthGuardService } from '../../core/guard/auth-guard.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,6 +16,7 @@ import { User } from 'src/app/shared/model/user';
 export class ProfileComponent implements OnInit {
   posts$: Observable<Post[]>;
   user$: Observable<User>;
+  searchPosts$: Observable<Post[]>;
 
   constructor(
     private authGuard: AuthGuardService,
@@ -36,6 +37,14 @@ export class ProfileComponent implements OnInit {
       width: '70%',
       height: '70%',
     });
+  }
+
+  searchPost(value: string) {
+    if (value) {
+      this.searchPosts$ =  this.postService.fetchAll({ title: value });
+    } else {
+      this.searchPosts$ = null;
+    }
   }
 
   logout(): void {

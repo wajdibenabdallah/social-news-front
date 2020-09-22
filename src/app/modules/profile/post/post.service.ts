@@ -10,8 +10,10 @@ import { Injectable } from '@angular/core';
 export class PostService {
   constructor(private http: HttpClient) {}
 
-  fetchAll(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${CONFIG.baseUrl}/api/post`);
+  fetchAll(params?: any): Observable<Post[]> {
+    return this.http.get<Post[]>(`${CONFIG.baseUrl}/api/post`, {
+      params: params,
+    });
   }
 
   post(post: FormData): Observable<Post> {

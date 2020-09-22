@@ -27,15 +27,21 @@
 
 .settings {
   margin: 5px;
-  height: 2%;
+  height: 60px;
 }
 
 .search {
   float: right !important;
   width: 30% !important;
-  bottom: 0.1%
+  bottom: 1px
 }
 
 .my-fab {
-  width: 3%;
+ bottom: 5px;
 }
+
+.search-title{
+  font-size: smaller;
+}
+
+strong { font-weight: bold; }
