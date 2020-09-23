@@ -46,7 +46,7 @@ export class LoginComponent {
 
     switch (error.status) {
       case 401:
-        title = 'Problème d authentifcation';
+        title = 'Problème d\' authentifcation';
         message = 'Vérifier votre email ou mot de passe';
         break;
       default:
