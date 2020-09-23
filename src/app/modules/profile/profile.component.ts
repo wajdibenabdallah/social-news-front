@@ -1,5 +1,5 @@
 import { ProfileService } from './profile.service';
-import { empty, from, Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { PostService } from './post/post.service';
 import { AuthGuardService } from '../../core/guard/auth-guard.service';
 import { Component, OnInit } from '@angular/core';
