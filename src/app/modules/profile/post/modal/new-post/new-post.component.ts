@@ -13,10 +13,13 @@ export class NewPostComponent {
   private form = this.fb.group({
     title: ['', Validators.required],
     text: ['', Validators.required],
-    image: ['', Validators.compose([
-      Validators.required, 
-      Validators.pattern(/^(.*\.(?!(jpg|png|jpeg)$))?[^.]*$/i)])
-    ]
+    image: [
+      '',
+      Validators.compose([
+        Validators.required,
+        Validators.pattern(/^(.*\.(?!(jpg|png|jpeg)$))?[^.]*$/i),
+      ]),
+    ],
   });
 
   spinner: boolean;
@@ -25,14 +28,13 @@ export class NewPostComponent {
     private service: PostService,
     public newPostRef: MatDialogRef<NewPostComponent>,
     public container: ElementRef,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     newPostRef.disableClose = true;
     this.spinner = false;
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
     this.spinner = true;
     this.container.nativeElement.children[0].classList.add('loading');
     const formDataPost = new FormData();
@@ -44,7 +46,7 @@ export class NewPostComponent {
         this.onCancel();
         this.refresh();
       },
-      (error) => console.error(error)
+      (error) => console.error(error),
     );
   }
 
@@ -58,13 +60,5 @@ export class NewPostComponent {
 
   getFieldError(field: ValidationErrors): void {
     console.log(field);
-    /*
-    if (field.hasOwnProperty('required') && field.required) {
-      return 'Ce champ est Obligatoire';
-    }
-    if (field.hasOwnProperty('email') && field.email) {
-      return `Email invalide`;
-    }
-    */
   }
 }

@@ -32,16 +32,22 @@
 
 .search {
   float: right !important;
-  width: 30% !important;
-  bottom: 1px
 }
 
 .my-fab {
- bottom: 5px;
+  bottom: 5px;
 }
 
-.search-title{
+.search-title {
   font-size: smaller;
 }
 
-strong { font-weight: bold; }
+strong {
+  font-weight: bold;
+}
+
+.input-progress {
+  width: 200px;
+  position: absolute;
+  top: 25px;
+}
