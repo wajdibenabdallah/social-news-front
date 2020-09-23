@@ -18,7 +18,7 @@ export class TokenInterceptorService implements HttpInterceptor {
   constructor(private auth: AuthGuardService) {}
   intercept(
     request: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     request = request.clone({
       setHeaders: {
@@ -28,7 +28,7 @@ export class TokenInterceptorService implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((errorResponse: HttpErrorResponse) => {
         return throwError(errorResponse);
-      })
+      }),
     );
   }
 }

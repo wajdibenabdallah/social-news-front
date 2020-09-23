@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
       ]),
       phone: new FormControl(
         '+33 6 11 76 29 07',
-        Validators.compose([Validators.required, phoneValidator])
+        Validators.compose([Validators.required, phoneValidator]),
       ),
       password: new FormControl('', [
         Validators.required,
@@ -46,14 +46,14 @@ export class RegisterComponent implements OnInit {
       ]),
       confirmPassword: new FormControl('', [Validators.required]),
     },
-    { validator: passwordValidator }
+    { validator: passwordValidator },
   );
 
   constructor(
     private fb: FormBuilder,
     private service: RegisterService,
     private router: Router,
-    private alert: AlertService
+    private alert: AlertService,
   ) {}
 
   ngOnInit() {}
@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
             type: ALERT_TYPE.ERROR,
           };
           this.alert.newAlert(alert);
-        }
+        },
       );
     }
   }

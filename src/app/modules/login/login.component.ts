@@ -25,13 +25,13 @@ export class LoginComponent {
     private fb: FormBuilder,
     private service: LoginService,
     private alert: AlertService,
-    private router: Router
+    private router: Router,
   ) {}
 
   onSubmit() {
     this.service.login(this.form.value).subscribe(
       (data: { token: string }) => this.onSuccess(data.token),
-      (error) => this.onError(error)
+      (error) => this.onError(error),
     );
   }
 
@@ -46,7 +46,7 @@ export class LoginComponent {
 
     switch (error.status) {
       case 401:
-        title = 'Problème d\' authentifcation';
+        title = "Problème d' authentifcation";
         message = 'Vérifier votre email ou mot de passe';
         break;
       default:

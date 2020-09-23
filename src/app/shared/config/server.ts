@@ -1,4 +1,4 @@
 export const CONFIG = {
   baseUrl: 'http://localhost:4000',
-  displayingAlertDelay: 30
+  displayingAlertDelay: 30,
 };

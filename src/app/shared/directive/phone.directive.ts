@@ -21,7 +21,7 @@ export class PhoneDirective {
     this.renderer.setProperty(
       this.elementRef.nativeElement,
       'value',
-      formatedValue
+      formatedValue,
     );
   }
 }

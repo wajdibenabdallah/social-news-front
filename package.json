@@ -8,8 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prettier": "prettier src/app/modules/profile/*.ts",
-    "prettier-write": "prettier --write src/app/modules/profile/*.*"
+    "prettier": "prettier src/app/**/*.ts",
+    "prettier-write": "prettier --write src/app/**/*.*"
   },
   "private": true,
   "dependencies": {

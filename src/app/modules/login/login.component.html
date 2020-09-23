@@ -9,20 +9,39 @@
       <mat-grid-list cols="1" rowHeight="100px">
         <mat-grid-tile>
           <mat-form-field class="field">
-            <input matInput type="email" placeholder="Email" formControlName="email" />
-            <mat-error *ngIf="email?.touched && email?.invalid">{{ getFieldError(email.errors) }}</mat-error>
+            <input
+              matInput
+              type="email"
+              placeholder="Email"
+              formControlName="email"
+            />
+            <mat-error *ngIf="email?.touched && email?.invalid">{{
+              getFieldError(email.errors)
+            }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-form-field class="">
-            <input type="password" matInput placeholder="Password" formControlName="password" />
-            <mat-error *ngIf="password?.touched && password?.invalid">{{ getFieldError(password.errors) }}</mat-error>
+            <input
+              type="password"
+              matInput
+              placeholder="Password"
+              formControlName="password"
+            />
+            <mat-error *ngIf="password?.touched && password?.invalid">{{
+              getFieldError(password.errors)
+            }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
-          <button [disabled]="form.invalid" type="submit" mat-raised-button color="primary">
+          <button
+            [disabled]="form.invalid"
+            type="submit"
+            mat-raised-button
+            color="primary"
+          >
             Login
           </button>
         </mat-grid-tile>
