@@ -1,7 +1,8 @@
-import { Observable, Subscribable, Subscriber } from 'rxjs';
 import { Component, ElementRef, Inject } from '@angular/core';
-import { FormBuilder, ValidationErrors, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { RegEx } from 'src/app/shared/class/reg-ex/reg-ex.enum';
+import { ErrorService } from 'src/app/shared/service/error/error.service';
 import { PostService } from '../../post.service';
 
 @Component({
@@ -12,26 +13,23 @@ import { PostService } from '../../post.service';
 export class NewPostComponent {
   private form = this.fb.group({
     title: ['', Validators.required],
-    text: ['', Validators.required],
-    image: [
-      '',
-      Validators.compose([
-        Validators.required,
-        Validators.pattern(/^(.*\.(?!(jpg|png|jpeg)$))?[^.]*$/i),
-      ]),
-    ],
+    text: ['', [Validators.required, Validators.minLength(50)]],
+    image: ['', Validators.pattern(RegEx.IS_VALID_IMAGE)],
   });
 
+  errorFieldService: ErrorService;
   spinner: boolean;
   constructor(
     private fb: FormBuilder,
     private service: PostService,
-    public newPostRef: MatDialogRef<NewPostComponent>,
-    public container: ElementRef,
+    private newPostRef: MatDialogRef<NewPostComponent>,
+    private container: ElementRef,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    _errorFieldService: ErrorService,
   ) {
     newPostRef.disableClose = true;
     this.spinner = false;
+    this.errorFieldService = _errorFieldService;
   }
 
   onSubmit(): void {
@@ -58,7 +56,11 @@ export class NewPostComponent {
     this.newPostRef.close();
   }
 
-  getFieldError(field: ValidationErrors): void {
-    console.log(field);
+  get title() {
+    return this.form.get('title') as FormControl;
+  }
+
+  get text() {
+    return this.form.get('text') as FormControl;
   }
 }

@@ -2,52 +2,34 @@ import { AlertService } from 'src/app/shared/component/alert/alert.service';
 import { Router } from '@angular/router';
 import { User } from './../../shared/model/user';
 import { RegisterService } from './register.service';
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators,
-  ValidationErrors,
-} from '@angular/forms';
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { phoneValidator } from 'src/app/shared/validator/phone.validator';
 import { passwordValidator } from 'src/app/shared/validator/password.validator';
 import { Alert, ALERT_TYPE } from 'src/app/shared/model/alert';
+import { RegEx } from 'src/app/shared/class/reg-ex/reg-ex.enum';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
+  providers: [{ provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }],
 })
 export class RegisterComponent implements OnInit {
   private form: FormGroup = this.fb.group(
     {
-      firstName: new FormControl('Wajdi', [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(20),
-      ]),
-      lastName: new FormControl('Ben Abdallah', [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(20),
-      ]),
-      email: new FormControl('wajdibabdallah@gmail.com', [
-        Validators.required,
-        Validators.email,
-      ]),
-      phone: new FormControl(
-        '+33 6 11 76 29 07',
-        Validators.compose([Validators.required, phoneValidator]),
-      ),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-      ]),
+      firstName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
+      email: new FormControl('', [Validators.required, Validators.pattern(RegEx.IS_EMAIL)]),
+      phone: new FormControl('', Validators.compose([Validators.required, phoneValidator()])),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       confirmPassword: new FormControl('', [Validators.required]),
     },
     { validator: passwordValidator },
   );
+
+  // matcher = new ErrorStateMatcher();
 
   constructor(
     private fb: FormBuilder,
@@ -77,18 +59,24 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  getFieldError(field: ValidationErrors): string {
-    if (field.hasOwnProperty('required') && field.required) {
+  getFieldError(field: ValidationErrors): string | null {
+    if (field && field.hasOwnProperty('required') && field.required) {
       return 'Ce champ est Obligatoire';
     }
-    if (field.hasOwnProperty('minlength') && field.minlength) {
+    if (field && field.hasOwnProperty('minlength') && field.minlength) {
       return `Ce champ doit etre composé au moin de ${field.minlength.requiredLength} caracatères`;
     }
-    if (field.hasOwnProperty('email') && field.email) {
+    if (field && field.hasOwnProperty('maxlength') && field.maxlength) {
+      return `Ce champ doit etre composé en max de ${field.maxlength.requiredLength} caracatères`;
+    }
+    if (field && field.hasOwnProperty('pattern') && field.pattern) {
       return `Email invalide`;
     }
-    if (field.hasOwnProperty('phone') && field.phone) {
-      return field.phone;
+    if (field && field.hasOwnProperty('matchPassword') && !field.matchPassword) {
+      return `Les mots de passes ne sont pas identique`;
+    }
+    if (field && field.hasOwnProperty('phone') && field.phone) {
+      return `Format incorrecte`;
     }
   }
 

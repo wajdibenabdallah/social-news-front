@@ -9,104 +9,51 @@
       <mat-grid-list cols="2" rowHeight="3:1">
         <mat-grid-tile>
           <mat-form-field class="field">
-            <input
-              matInput
-              type="text"
-              placeholder="Firstname"
-              formControlName="firstName"
-            />
-            <mat-error *ngIf="firstName.dirty && firstName.invalid">{{
-              getFieldError(firstName.errors)
-            }}</mat-error>
+            <input matInput type="text" placeholder="Firstname" formControlName="firstName" />
+            <mat-error *ngIf="firstName.errors">{{ getFieldError(firstName.errors) }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-form-field class="">
-            <input
-              type="text"
-              matInput
-              placeholder="Lastname"
-              formControlName="lastName"
-            />
-            <mat-error *ngIf="lastName.dirty && lastName.invalid">{{
-              getFieldError(lastName.errors)
-            }}</mat-error>
+            <input type="text" matInput placeholder="Lastname" formControlName="lastName" />
+            <mat-error *ngIf="lastName.errors">{{ getFieldError(lastName.errors) }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-form-field class="">
-            <input
-              type="email"
-              matInput
-              placeholder="Email"
-              formControlName="email"
-            />
-            <mat-error *ngIf="email.dirty && email.invalid">{{
-              getFieldError(email.errors)
-            }}</mat-error>
+            <input type="email" matInput placeholder="Email" formControlName="email" />
+            <mat-error *ngIf="email.errors">{{ getFieldError(email.errors) }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-form-field class="">
-            <input
-              appPhone
-              type="text"
-              matInput
-              placeholder="Phone"
-              formControlName="phone"
-            />
-            <mat-error *ngIf="phone.dirty && phone.invalid">{{
-              getFieldError(phone.errors)
-            }}</mat-error>
+            <input appPhone type="text" matInput placeholder="Phone" formControlName="phone" />
+            <mat-error *ngIf="phone.errors">{{ getFieldError(phone.errors) }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-form-field class="">
-            <input
-              type="password"
-              matInput
-              placeholder="Password"
-              formControlName="password"
-            />
-            <mat-error *ngIf="password.touched && password.invalid">{{
-              getFieldError(password.errors)
-            }}</mat-error>
+            <input type="password" matInput placeholder="Password" formControlName="password" />
+            <mat-error *ngIf="password.errors">{{ getFieldError(password.errors) }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-form-field class="">
-            <input
-              type="password"
-              matInput
-              placeholder="Confirm Password"
-              formControlName="confirmPassword"
-            />
-            <mat-error
-              *ngIf="confirmPassword.touched && confirmPassword.invalid"
-              >{{ getFieldError(confirmPassword.errors) }}</mat-error
-            >
-            <mat-error *ngIf="!form.errors?.matchPassword"
-              >Les mots de passes ne sont pas identique</mat-error
-            >
+            <input type="password" matInput placeholder="Confirm Password" formControlName="confirmPassword" />
+            <mat-error *ngIf="confirmPassword.errors">{{ getFieldError(confirmPassword.errors) }}</mat-error>
+            <mat-error *ngIf="!confirmPassword.errors && form.errors">getFieldError(form.errors)</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile></mat-grid-tile>
 
         <mat-grid-tile>
-          <button
-            [disabled]="form.invalid"
-            type="submit"
-            mat-raised-button
-            color="primary"
-          >
-            Register
-          </button>
+          <button [disabled]="form.invalid" type="submit" mat-raised-button color="primary">Register</button>
         </mat-grid-tile>
       </mat-grid-list>
     </form>

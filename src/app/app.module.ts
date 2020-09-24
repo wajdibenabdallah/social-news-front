@@ -31,10 +31,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PhoneDirective } from './shared/directive/phone.directive';
 import { PostComponent } from './modules/profile/post/post.component';
 import { NewPostComponent } from './modules/profile/post/modal/new-post/new-post.component';
-import {
-  MaterialFileInputModule,
-  NGX_MAT_FILE_INPUT_CONFIG,
-} from 'ngx-material-file-input';
+import { MaterialFileInputModule, NGX_MAT_FILE_INPUT_CONFIG } from 'ngx-material-file-input';
 import { FirstnamePipe } from './shared/pipe/user/firstname.pipe';
 import { LastnamePipe } from './shared/pipe/user/lastname.pipe';
 import { ImageUriPipe } from './shared/pipe/post/image-uri.pipe';

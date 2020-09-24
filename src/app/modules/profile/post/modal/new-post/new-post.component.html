@@ -9,6 +9,7 @@
     <mat-grid-tile [colspan]="3" [rowspan]="1">
       <mat-form-field style="width: 90%">
         <input formControlName="title" matInput placeholder="Title" />
+        <mat-error *ngIf="form.get('title').errors">{{ errorFieldService.getFieldError(title.errors) }}</mat-error>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="4" [rowspan]="5">
@@ -21,21 +22,13 @@
           cdkAutosizeMaxRows="50"
           placeholder="Type your text"
         ></textarea>
+        <mat-error *ngIf="form.get('text').errors">{{ errorFieldService.getFieldError(text.errors) }}</mat-error>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="4" [rowspan]="3"
       ><mat-form-field style="width: 90%">
-        <ngx-mat-file-input
-          formControlName="image"
-          #removableInput
-          placeholder="Set an image"
-        ></ngx-mat-file-input>
-        <button
-          mat-icon-button
-          matSuffix
-          *ngIf="!removableInput.empty"
-          (click)="removableInput.clear($event)"
-        >
+        <ngx-mat-file-input formControlName="image" #removableInput placeholder="Set an image"></ngx-mat-file-input>
+        <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
           <mat-icon>clear</mat-icon>
         </button>
         <mat-error *ngIf="image">{{ getFieldError(image.errors) }}</mat-error>

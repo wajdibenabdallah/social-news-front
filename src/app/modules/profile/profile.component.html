@@ -35,20 +35,10 @@
               #search
               [matAutocomplete]="auto"
             />
-            <mat-progress-bar
-              class="input-progress"
-              *ngIf="progress"
-              mode="indeterminate"
-            ></mat-progress-bar>
+            <mat-progress-bar class="input-progress" *ngIf="progress" mode="indeterminate"></mat-progress-bar>
             <mat-autocomplete #auto="matAutocomplete">
-              <mat-option
-                class="search-title"
-                *ngFor="let post of searchPosts$ | async"
-                [value]="post.data.title"
-              >
-                <span
-                  [innerHTML]="post.data.title | highlight: search.value"
-                ></span>
+              <mat-option class="search-title" *ngFor="let post of searchPosts$ | async" [value]="post.data.title">
+                <span [innerHTML]="post.data.title | highlight: search.value"></span>
               </mat-option>
             </mat-autocomplete>
             <mat-icon matSuffix>search</mat-icon>

@@ -14,6 +14,7 @@
               type="email"
               placeholder="Email"
               formControlName="email"
+              [errorStateMatcher]="matcher"
             />
             <mat-error *ngIf="email?.touched && email?.invalid">{{
               getFieldError(email.errors)
@@ -28,6 +29,7 @@
               matInput
               placeholder="Password"
               formControlName="password"
+              [errorStateMatcher]="matcher"
             />
             <mat-error *ngIf="password?.touched && password?.invalid">{{
               getFieldError(password.errors)
@@ -36,12 +38,7 @@
         </mat-grid-tile>
 
         <mat-grid-tile>
-          <button
-            [disabled]="form.invalid"
-            type="submit"
-            mat-raised-button
-            color="primary"
-          >
+          <button [disabled]="form.invalid" type="submit" mat-raised-button color="primary">
             Login
           </button>
         </mat-grid-tile>

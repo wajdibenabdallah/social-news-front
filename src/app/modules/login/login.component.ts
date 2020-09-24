@@ -1,11 +1,7 @@
+import { ErrorStateMatcher } from '../../shared/class/error-state/error-state-matcher';
 import { LoginService } from './login.service';
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ALERT_TYPE, Alert } from 'src/app/shared/model/alert';
 import { AlertService } from 'src/app/shared/component/alert/alert.service';
@@ -20,6 +16,8 @@ export class LoginComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: ['', Validators.required],
   });
+
+  matcher = new ErrorStateMatcher();
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +44,7 @@ export class LoginComponent {
 
     switch (error.status) {
       case 401:
-        title = "Problème d' authentifcation";
+        title = 'Problème d authentifcation';
         message = 'Vérifier votre email ou mot de passe';
         break;
       default:
