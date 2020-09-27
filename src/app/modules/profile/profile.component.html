@@ -1,53 +1,38 @@
 <div class="profile">
-  <mat-card class="left-panel">
-    <mat-card-header>
-      <div class="logout-button">
-        <button mat-icon-button (click)="logout()">
-          <mat-icon>logout</mat-icon>
-        </button>
-      </div>
-      <div mat-card-avatar class="profile-avatar"></div>
-      <mat-card-title>
-        {{ (user$ | async)?.firstname | titlecase }}
-      </mat-card-title>
-      <mat-card-subtitle>
-        {{ (user$ | async)?.lastname | uppercase }}
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>Bonjour, Je suis ingénieur informaticien</p>
-    </mat-card-content>
-    <mat-card-actions></mat-card-actions>
-  </mat-card>
-  <mat-card class="main-panel">
-    <mat-tab-group>
-      <mat-tab label="News">
-        <mat-card class="settings">
-          <button class="my-fab" mat-mini-fab color="primary" (click)="newPost()">
-            <mat-icon>post_add</mat-icon>
-          </button>
-          <form class="search" [formGroup]="searchForm">
-            <mat-form-field>
-              <input
-                type="text"
-                placeholder="Search"
-                matInput
-                formControlName="searchField"
-                #search
-                [matAutocomplete]="auto"
-              />
-              <mat-progress-bar class="input-progress" *ngIf="progress" mode="indeterminate"></mat-progress-bar>
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option class="search-title" *ngFor="let post of searchPosts$ | async" [value]="post.data.title">
-                  <span [innerHTML]="post.data.title | highlight: search.value"></span>
-                </mat-option>
-              </mat-autocomplete>
-              <mat-icon matSuffix>search</mat-icon>
-            </mat-form-field>
-          </form>
-        </mat-card>
-        <app-post [post]="post" *ngFor="let post of posts$ | async"></app-post>
-      </mat-tab>
-    </mat-tab-group>
-  </mat-card>
+  <div class="left-panel">
+    <app-user-panel></app-user-panel>
+  </div>
+  <div class="main-panel">
+    <mat-card class="main-container">
+      <mat-tab-group>
+        <mat-tab label="News">
+          <mat-card class="settings">
+            <button class="my-fab" mat-mini-fab color="primary" (click)="newPost()">
+              <mat-icon>post_add</mat-icon>
+            </button>
+            <form class="search" [formGroup]="searchForm">
+              <mat-form-field>
+                <input
+                  type="text"
+                  placeholder="Search"
+                  matInput
+                  formControlName="searchField"
+                  #search
+                  [matAutocomplete]="auto"
+                />
+                <mat-progress-bar class="input-progress" *ngIf="progress" mode="indeterminate"></mat-progress-bar>
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option class="search-title" *ngFor="let post of searchPosts$ | async" [value]="post.data.title">
+                    <span [innerHTML]="post.data.title | highlight: search.value"></span>
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+            </form>
+          </mat-card>
+          <app-post [post]="post" *ngFor="let post of posts$ | async"></app-post>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
 </div>

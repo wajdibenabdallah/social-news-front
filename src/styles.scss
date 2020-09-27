@@ -3,3 +3,9 @@
 .background {
   background-image: url('/assets/images/background.png') !important;
 }
+
+mat-icon {
+  &:hover {
+    color: #992233;
+  }
+}

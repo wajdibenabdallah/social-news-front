@@ -36,6 +36,7 @@ import { FirstnamePipe } from './shared/pipe/user/firstname.pipe';
 import { LastnamePipe } from './shared/pipe/user/lastname.pipe';
 import { ImageUriPipe } from './shared/pipe/post/image-uri.pipe';
 import { HighlightPipe } from './shared/pipe/search/highlight.pipe';
+import { UserPanelComponent } from './modules/profile/user-settings/user-settings/user-panel.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -58,6 +59,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     LastnamePipe,
     ImageUriPipe,
     HighlightPipe,
+    UserPanelComponent,
   ],
   entryComponents: [NewPostComponent],
   imports: [

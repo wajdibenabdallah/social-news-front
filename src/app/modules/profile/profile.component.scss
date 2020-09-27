@@ -17,14 +17,8 @@
   overflow-y: auto;
 }
 
-.profile-avatar {
-  background-image: url('/assets/images/avatar.png');
-  background-size: cover;
-}
-
-.logout-button {
-  right: 0px;
-  position: absolute;
+.main-container {
+  height: -webkit-fill-available;
 }
 
 .settings {
@@ -52,9 +46,4 @@ strong {
   width: 200px;
   position: absolute;
   top: 25px;
-}
-
-.profile-avatar {
-  background-image: url('/assets/images/avatar.png');
-  background-size: cover;
 }

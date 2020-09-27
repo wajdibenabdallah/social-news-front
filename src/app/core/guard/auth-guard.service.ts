@@ -41,7 +41,7 @@ export class AuthGuardService implements CanActivate {
         const alert: Alert = {
           title: 'Logout',
           message: response.message,
-          type: ALERT_TYPE.ERROR,
+          type: ALERT_TYPE.INFORMATION,
         };
         this.alert.newAlert(alert);
         localStorage.removeItem('token');

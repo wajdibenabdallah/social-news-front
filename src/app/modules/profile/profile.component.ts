@@ -17,23 +17,14 @@ import { debounceTime, switchMap, tap, mergeMap } from 'rxjs/operators';
 })
 export class ProfileComponent implements OnInit {
   posts$: Observable<Post[]>;
-  user$: Observable<User>;
   searchPosts$: Observable<Post[]>;
   searchField: FormControl = new FormControl();
   searchForm = this.fb.group({ searchField: this.searchField });
   progress = false;
 
-  constructor(
-    private authGuard: AuthGuardService,
-    private postService: PostService,
-    private profileService: ProfileService,
-    private newPostModal: MatDialog,
-    private fb: FormBuilder,
-  ) {}
+  constructor(private postService: PostService, private newPostModal: MatDialog, private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    // get user informations
-    this.user$ = this.profileService.getCurrentUser();
     // get all posts
     this.posts$ = this.postService.fetch();
     // search
@@ -56,9 +47,5 @@ export class ProfileComponent implements OnInit {
       width: '70%',
       height: '70%',
     });
-  }
-
-  logout(): void {
-    this.authGuard.logout();
   }
 }
