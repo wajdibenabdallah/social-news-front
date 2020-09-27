@@ -9,15 +9,9 @@
       <mat-grid-list cols="1" rowHeight="100px">
         <mat-grid-tile>
           <mat-form-field class="field">
-            <input
-              matInput
-              type="email"
-              placeholder="Email"
-              formControlName="email"
-              [errorStateMatcher]="matcher"
-            />
+            <input matInput type="email" placeholder="Email" formControlName="email" [errorStateMatcher]="matcher" />
             <mat-error *ngIf="email?.touched && email?.invalid">{{
-              getFieldError(email.errors)
+              errorFieldService.getFieldError(email.errors)
             }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
@@ -32,15 +26,13 @@
               [errorStateMatcher]="matcher"
             />
             <mat-error *ngIf="password?.touched && password?.invalid">{{
-              getFieldError(password.errors)
+              errorFieldService.getFieldError(password.errors)
             }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
-          <button [disabled]="form.invalid" type="submit" mat-raised-button color="primary">
-            Login
-          </button>
+          <button [disabled]="form.invalid" type="submit" mat-raised-button color="primary">Login</button>
         </mat-grid-tile>
       </mat-grid-list>
     </form>

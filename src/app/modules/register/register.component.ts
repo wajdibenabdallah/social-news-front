@@ -9,6 +9,7 @@ import { passwordValidator } from 'src/app/shared/validator/password.validator';
 import { Alert, ALERT_TYPE } from 'src/app/shared/model/alert';
 import { RegEx } from 'src/app/shared/class/reg-ex/reg-ex.enum';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { ErrorService } from 'src/app/shared/service/error/error.service';
 
 @Component({
   selector: 'app-register',
@@ -29,13 +30,12 @@ export class RegisterComponent implements OnInit {
     { validator: passwordValidator },
   );
 
-  // matcher = new ErrorStateMatcher();
-
   constructor(
     private fb: FormBuilder,
     private service: RegisterService,
     private router: Router,
     private alert: AlertService,
+    public errorFieldService: ErrorService,
   ) {}
 
   ngOnInit() {}
@@ -56,27 +56,6 @@ export class RegisterComponent implements OnInit {
           this.alert.newAlert(alert);
         },
       );
-    }
-  }
-
-  getFieldError(field: ValidationErrors): string | null {
-    if (field && field.hasOwnProperty('required') && field.required) {
-      return 'Ce champ est Obligatoire';
-    }
-    if (field && field.hasOwnProperty('minlength') && field.minlength) {
-      return `Ce champ doit etre composé au moin de ${field.minlength.requiredLength} caracatères`;
-    }
-    if (field && field.hasOwnProperty('maxlength') && field.maxlength) {
-      return `Ce champ doit etre composé en max de ${field.maxlength.requiredLength} caracatères`;
-    }
-    if (field && field.hasOwnProperty('pattern') && field.pattern) {
-      return `Email invalide`;
-    }
-    if (field && field.hasOwnProperty('matchPassword') && !field.matchPassword) {
-      return `Les mots de passes ne sont pas identique`;
-    }
-    if (field && field.hasOwnProperty('phone') && field.phone) {
-      return `Format incorrecte`;
     }
   }
 

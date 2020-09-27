@@ -5,3 +5,17 @@ export const RegEx = {
   HAS_NUMBER: /\d/,
   IS_VALID_IMAGE: /^(.*\.(?!(jpg|png|jpeg)$))?[^.]*$/i,
 };
+
+// Synchronized with BackEnd
+
+// Rules
+/*
+  // USER
+  Firstname and Lastname should contains between 5 and 20 characters and no numeric special characters or numeric
+  Email Number Should be matched with the required form
+  Phone Number Should be matched with the required form
+  Password should contains at least 8 characters
+  // POST
+  Title shouldn't be empty
+  Text Should contains at least 50 characters
+*/

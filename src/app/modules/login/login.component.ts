@@ -1,29 +1,30 @@
-import { ErrorStateMatcher } from '../../shared/class/error-state/error-state-matcher';
 import { LoginService } from './login.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ALERT_TYPE, Alert } from 'src/app/shared/model/alert';
 import { AlertService } from 'src/app/shared/component/alert/alert.service';
+import { ErrorService } from 'src/app/shared/service/error/error.service';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  providers: [{ provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }],
 })
 export class LoginComponent {
   private form = this.fb.group({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', Validators.required),
     password: ['', Validators.required],
   });
-
-  matcher = new ErrorStateMatcher();
 
   constructor(
     private fb: FormBuilder,
     private service: LoginService,
     private alert: AlertService,
     private router: Router,
+    public errorFieldService: ErrorService,
   ) {}
 
   onSubmit() {
@@ -57,15 +58,6 @@ export class LoginComponent {
       type: ALERT_TYPE.ERROR,
     };
     this.alert.newAlert(alert);
-  }
-
-  getFieldError(field: ValidationErrors): string {
-    if (field.hasOwnProperty('required') && field.required) {
-      return 'Ce champ est Obligatoire';
-    }
-    if (field.hasOwnProperty('email') && field.email) {
-      return `Email invalide`;
-    }
   }
 
   get email() {

@@ -1,4 +1,4 @@
-<mat-grid-list cols="4" rowHeight="fit" style="height: 100%">
+<mat-grid-list cols="4" rowHeight="fit" class="new-post">
   <div *ngIf="spinner" class="post-spinner">
     <mat-spinner></mat-spinner>
   </div>
@@ -7,13 +7,13 @@
       <h1 mat-dialog-title>Add New Post</h1>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="1">
-      <mat-form-field style="width: 90%">
+      <mat-form-field class="new-post-title">
         <input formControlName="title" matInput placeholder="Title" />
         <mat-error *ngIf="form.get('title').errors">{{ errorFieldService.getFieldError(title.errors) }}</mat-error>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="4" [rowspan]="5">
-      <mat-form-field style="width: 90%">
+      <mat-form-field class="new-post-text">
         <textarea
           formControlName="text"
           cdkTextareaAutosize
@@ -26,7 +26,7 @@
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="4" [rowspan]="3"
-      ><mat-form-field style="width: 90%">
+      ><mat-form-field class="new-post-image">
         <ngx-mat-file-input formControlName="image" #removableInput placeholder="Set an image"></ngx-mat-file-input>
         <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
           <mat-icon>clear</mat-icon>

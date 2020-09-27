@@ -25,7 +25,7 @@ export class NewPostComponent {
     private newPostRef: MatDialogRef<NewPostComponent>,
     private container: ElementRef,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    _errorFieldService: ErrorService,
+    public _errorFieldService: ErrorService,
   ) {
     newPostRef.disableClose = true;
     this.spinner = false;

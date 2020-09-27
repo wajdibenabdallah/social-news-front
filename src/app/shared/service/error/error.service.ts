@@ -8,7 +8,6 @@ export class ErrorService {
   constructor() {}
 
   getFieldError(field: ValidationErrors): string | null {
-    console.log(field);
     if (field && field.hasOwnProperty('required') && field.required) {
       return 'Ce champ est Obligatoire';
     }

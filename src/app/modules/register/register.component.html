@@ -10,43 +10,47 @@
         <mat-grid-tile>
           <mat-form-field class="field">
             <input matInput type="text" placeholder="Firstname" formControlName="firstName" />
-            <mat-error *ngIf="firstName.errors">{{ getFieldError(firstName.errors) }}</mat-error>
+            <mat-error *ngIf="firstName.errors">{{ errorFieldService.getFieldError(firstName.errors) }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-form-field class="">
             <input type="text" matInput placeholder="Lastname" formControlName="lastName" />
-            <mat-error *ngIf="lastName.errors">{{ getFieldError(lastName.errors) }}</mat-error>
+            <mat-error *ngIf="lastName.errors">{{ errorFieldService.getFieldError(lastName.errors) }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-form-field class="">
             <input type="email" matInput placeholder="Email" formControlName="email" />
-            <mat-error *ngIf="email.errors">{{ getFieldError(email.errors) }}</mat-error>
+            <mat-error *ngIf="email.errors">{{ errorFieldService.getFieldError(email.errors) }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-form-field class="">
             <input appPhone type="text" matInput placeholder="Phone" formControlName="phone" />
-            <mat-error *ngIf="phone.errors">{{ getFieldError(phone.errors) }}</mat-error>
+            <mat-error *ngIf="phone.errors">{{ errorFieldService.getFieldError(phone.errors) }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-form-field class="">
             <input type="password" matInput placeholder="Password" formControlName="password" />
-            <mat-error *ngIf="password.errors">{{ getFieldError(password.errors) }}</mat-error>
+            <mat-error *ngIf="password.errors">{{ errorFieldService.getFieldError(password.errors) }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-form-field class="">
             <input type="password" matInput placeholder="Confirm Password" formControlName="confirmPassword" />
-            <mat-error *ngIf="confirmPassword.errors">{{ getFieldError(confirmPassword.errors) }}</mat-error>
-            <mat-error *ngIf="!confirmPassword.errors && form.errors">getFieldError(form.errors)</mat-error>
+            <mat-error *ngIf="confirmPassword.errors">{{
+              errorFieldService.getFieldError(confirmPassword.errors)
+            }}</mat-error>
+            <mat-error *ngIf="!confirmPassword.errors && form.errors"
+              >errorFieldService.getFieldError(form.errors)</mat-error
+            >
           </mat-form-field>
         </mat-grid-tile>
 
