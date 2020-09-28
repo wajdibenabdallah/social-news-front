@@ -1,5 +1,5 @@
-import { CONFIG } from './../../shared/config/server';
-import { User } from './../../shared/model/user';
+import { CONFIG } from '../../../shared/config/server';
+import { User } from '../../../shared/model/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './modules/login/login.component';
-import { RegisterComponent } from './modules/register/register.component';
+import { LoginComponent } from './modules/home/login/login.component';
+import { RegisterComponent } from './modules/home/register/register.component';
 import { HomeComponent } from './modules/home/home.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProfileComponent } from './modules/profile/profile.component';
@@ -30,13 +30,14 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { PhoneDirective } from './shared/directive/phone.directive';
 import { PostComponent } from './modules/profile/post/post.component';
-import { NewPostComponent } from './modules/profile/post/modal/new-post/new-post.component';
+import { NewPostComponent } from './modules/profile/modal/new-post/new-post.component';
 import { MaterialFileInputModule, NGX_MAT_FILE_INPUT_CONFIG } from 'ngx-material-file-input';
 import { FirstnamePipe } from './shared/pipe/user/firstname.pipe';
 import { LastnamePipe } from './shared/pipe/user/lastname.pipe';
 import { ImageUriPipe } from './shared/pipe/post/image-uri.pipe';
 import { HighlightPipe } from './shared/pipe/search/highlight.pipe';
-import { UserPanelComponent } from './modules/profile/user-settings/user-settings/user-panel.component';
+import { UserPanelComponent } from './modules/profile/user-panel/user-panel.component';
+import { UserSettingsComponent } from './modules/profile/modal/user-settings/user-settings.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -60,6 +61,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     ImageUriPipe,
     HighlightPipe,
     UserPanelComponent,
+    UserSettingsComponent,
   ],
   entryComponents: [NewPostComponent],
   imports: [

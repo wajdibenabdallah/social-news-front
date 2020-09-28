@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, ValidationErrors, Validators } from '@angular
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RegEx } from 'src/app/shared/class/reg-ex/reg-ex.enum';
 import { ErrorService } from 'src/app/shared/service/error/error.service';
-import { PostService } from '../../post.service';
+import { PostService } from '../../post/post.service';
 
 @Component({
   selector: 'app-new-post',

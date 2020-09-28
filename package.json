@@ -1,6 +1,7 @@
 {
-  "name": "dev-game",
-  "version": "0.0.3",
+  "name": "devplatform",
+  "version": "0.0.2",
+  "description": "Dev Platform",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

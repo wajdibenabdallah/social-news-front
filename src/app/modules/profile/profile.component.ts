@@ -5,7 +5,7 @@ import { AuthGuardService } from '../../core/guard/auth-guard.service';
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/shared/model/post';
 import { MatDialog } from '@angular/material/dialog';
-import { NewPostComponent } from './post/modal/new-post/new-post.component';
+import { NewPostComponent } from './modal/new-post/new-post.component';
 import { User } from 'src/app/shared/model/user';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime, switchMap, tap, mergeMap } from 'rxjs/operators';

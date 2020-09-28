@@ -1,6 +1,6 @@
 import { AlertService } from 'src/app/shared/component/alert/alert.service';
 import { Router } from '@angular/router';
-import { User } from './../../shared/model/user';
+import { User } from '../../../shared/model/user';
 import { RegisterService } from './register.service';
 import { FormBuilder, FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
