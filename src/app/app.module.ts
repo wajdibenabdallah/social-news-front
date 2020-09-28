@@ -1,4 +1,4 @@
-import { TokenInterceptorService } from './shared/service/token-interceptor.service';
+import { TokenInterceptorService } from './shared/service/inspector/token-interceptor.service';
 import { AuthGuardService } from './core/guard/auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
