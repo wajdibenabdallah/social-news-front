@@ -1,10 +1,14 @@
-import { Directive, HostListener, ElementRef, Renderer2 } from '@angular/core';
+import { Directive, HostListener, ElementRef, Renderer2, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appPhone]',
 })
-export class PhoneDirective {
+export class PhoneDirective implements OnInit {
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+
+  ngOnInit(): void {
+    this.format();
+  }
 
   @HostListener('keydown', ['$event']) onKeyOver(event: KeyboardEvent) {
     if (isNaN(parseInt(event.key, 10)) && event.code !== 'Backspace') {
@@ -18,10 +22,6 @@ export class PhoneDirective {
     if (!formatedValue.startsWith('+')) {
       formatedValue = '+' + formatedValue;
     }
-    this.renderer.setProperty(
-      this.elementRef.nativeElement,
-      'value',
-      formatedValue,
-    );
+    this.renderer.setProperty(this.elementRef.nativeElement, 'value', formatedValue);
   }
 }

@@ -24,6 +24,7 @@ export class NewPostComponent {
     private service: PostService,
     private newPostRef: MatDialogRef<NewPostComponent>,
     private container: ElementRef,
+    // todo
     @Inject(MAT_DIALOG_DATA) public data: any,
     public _errorFieldService: ErrorService,
   ) {

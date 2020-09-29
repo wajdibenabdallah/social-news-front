@@ -29,6 +29,7 @@ export class UserPanelComponent implements OnInit {
     this.settingsModal.open(UserSettingsComponent, {
       width: '600px',
       height: '500px',
+      data: this.user$,
     });
   }
 
