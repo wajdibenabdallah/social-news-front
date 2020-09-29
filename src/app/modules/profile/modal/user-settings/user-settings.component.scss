@@ -5,6 +5,20 @@
   width: 100px;
 }
 
-.actions {
-  float: right;
+mat-form-field {
+  width: 250px !important;
+}
+
+.edit {
+  cursor: pointer;
+  &:hover {
+    background-color: #c5c5c5;
+    border-radius: 5px;
+  }
+}
+
+.verified {
+  &:hover {
+    color: initial;
+  }
 }

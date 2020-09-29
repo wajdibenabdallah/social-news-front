@@ -27,6 +27,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { PhoneDirective } from './shared/directive/phone.directive';
 import { PostComponent } from './modules/profile/post/post.component';
@@ -86,6 +87,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     MatProgressSpinnerModule,
     MatAutocompleteModule,
     MatProgressBarModule,
+    MatDividerModule,
   ],
   providers: [
     AuthGuardService,
