@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { PhoneDirective } from './shared/directive/phone.directive';
 import { PostComponent } from './modules/profile/post/post.component';
@@ -39,6 +40,7 @@ import { ImageUriPipe } from './shared/pipe/post/image-uri.pipe';
 import { HighlightPipe } from './shared/pipe/search/highlight.pipe';
 import { UserPanelComponent } from './modules/profile/user-panel/user-panel.component';
 import { UserSettingsComponent } from './modules/profile/modal/user-settings/user-settings.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -88,6 +90,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     MatAutocompleteModule,
     MatProgressBarModule,
     MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     AuthGuardService,
@@ -102,6 +106,7 @@ const JWT_Module_Options: JwtModuleOptions = {
         sizeUnit: 'Octet',
       },
     },
+    MatDatepickerModule,
   ],
   bootstrap: [AppComponent],
 })
