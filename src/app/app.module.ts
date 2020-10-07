@@ -41,6 +41,7 @@ import { HighlightPipe } from './shared/pipe/search/highlight.pipe';
 import { UserPanelComponent } from './modules/profile/user-panel/user-panel.component';
 import { UserSettingsComponent } from './modules/profile/modal/user-settings/user-settings.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ConfirmationModalComponent } from './shared/component/confirmation-modal/confirmation-modal.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -65,6 +66,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     HighlightPipe,
     UserPanelComponent,
     UserSettingsComponent,
+    ConfirmationModalComponent,
   ],
   entryComponents: [NewPostComponent],
   imports: [

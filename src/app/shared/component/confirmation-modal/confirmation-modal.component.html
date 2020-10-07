@@ -1,0 +1,7 @@
+<mat-card class="confirm-modal">
+  <p>{{ message }}</p>
+  <mat-card-actions class="confirm-modal-actions">
+    <button mat-button (click)="onConfirm()" [mat-dialog-close]>Yes</button>
+    <button mat-button (click)="onCancel()">No</button>
+  </mat-card-actions>
+</mat-card>
