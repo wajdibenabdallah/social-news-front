@@ -1,6 +1,6 @@
 <div class="profile">
   <div class="left-panel">
-    <app-user-panel></app-user-panel>
+    <app-user-panel [user$]="user$" (updateUserEvent)="reloadUserData()"></app-user-panel>
   </div>
   <div class="main-panel">
     <mat-card class="main-container">

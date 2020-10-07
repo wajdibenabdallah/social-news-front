@@ -1,10 +1,9 @@
 import { UserSettingsComponent } from '../modal/user-settings/user-settings.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AuthGuardService } from 'src/app/core/guard/auth-guard.service';
 import { User } from 'src/app/shared/model/user';
-import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-user-panel',
@@ -12,25 +11,28 @@ import { ProfileService } from '../profile.service';
   styleUrls: ['./user-panel.component.scss'],
 })
 export class UserPanelComponent implements OnInit {
-  user$: Observable<User>;
+  @Input() user$: Observable<User>;
+  @Output() updateUserEvent = new EventEmitter();
 
-  constructor(
-    private profileService: ProfileService,
-    private authGuard: AuthGuardService,
-    private settingsModal: MatDialog,
-  ) {}
+  constructor(private authGuard: AuthGuardService, private settingsModal: MatDialog) {}
 
-  ngOnInit(): void {
-    // get user informations
-    this.user$ = this.profileService.getCurrentUser();
-  }
+  ngOnInit(): void {}
 
   settings(): void {
-    this.settingsModal.open(UserSettingsComponent, {
-      width: '600px',
-      height: '500px',
-      data: this.user$,
-    });
+    this.settingsModal
+      .open(UserSettingsComponent, {
+        width: '600px',
+        height: '500px',
+        data: this.user$,
+        disableClose: true,
+      })
+      .componentInstance.updateUserEvent.subscribe((user: User) => {
+        this.updateUserEvent.emit(user);
+      });
+  }
+
+  closeModal(): void {
+    console.log('closeModal');
   }
 
   logout(): void {

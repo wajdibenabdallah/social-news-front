@@ -2,6 +2,7 @@
   <mat-card-header>
     <mat-card-title>My Settings</mat-card-title>
     <mat-card-subtitle></mat-card-subtitle>
+    <mat-icon (click)="close()" class="close-modal">close</mat-icon>
   </mat-card-header>
   <mat-divider [inset]="true"></mat-divider>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -11,79 +12,93 @@
           <div mat-card-avatar class="profile-avatar"></div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="7" class="tile-field">
-          <mat-form-field appearance="fill">
-            <input
-              type="text"
-              formControlName="firstName"
-              matInput
-              placeholder="Firstname"
-              value="{{ (user$ | async)?.firstname }}"
-            />
-            <mat-error *ngIf="firstName.errors">{{ errorFieldService.getFieldError(firstName.errors) }}</mat-error>
+          <mat-form-field appearance="standard">
+            <input type="text" [formControl]="firstname" matInput placeholder="Firstname" />
+            <mat-error *ngIf="firstname.errors">{{ errorFieldService.getFieldError(firstname.errors) }}</mat-error>
           </mat-form-field>
-          <mat-icon class="edit" (click)="enable(firstName)" matSuffix>edit</mat-icon>
+          <mat-icon *ngIf="!editMode.firstname" class="edit" (click)="toggleEnable('firstname')" matSuffix
+            >edit</mat-icon
+          >
+          <div>
+            <mat-icon *ngIf="editMode.firstname" class="edit confirmation" (click)="update('firstname')" matSuffix
+              >done</mat-icon
+            >
+            <mat-icon *ngIf="editMode.firstname" class="edit confirmation" (click)="cancel('firstname')" matSuffix
+              >cancel</mat-icon
+            >
+          </div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="7" class="tile-field">
-          <mat-form-field appearance="fill">
-            <input
-              type="text"
-              formControlName="lastName"
-              matInput
-              placeholder="Lastname"
-              value="{{ (user$ | async)?.lastname }}"
-            />
-            <mat-error *ngIf="lastName.errors">{{ errorFieldService.getFieldError(lastName.errors) }}</mat-error>
+          <mat-form-field appearance="standard">
+            <input type="text" formControlName="lastname" matInput placeholder="Lastname" />
+            <mat-error *ngIf="lastname.errors">{{ errorFieldService.getFieldError(lastname.errors) }}</mat-error>
           </mat-form-field>
-          <mat-icon class="edit" (click)="enable(lastName)" matSuffix>edit</mat-icon>
+          <mat-icon class="edit" *ngIf="!editMode.lastname" (click)="toggleEnable('lastname')" matSuffix>edit</mat-icon>
+          <div>
+            <mat-icon *ngIf="editMode.lastname" class="edit confirmation" (click)="update('lastname')" matSuffix
+              >done</mat-icon
+            >
+            <mat-icon *ngIf="editMode.lastname" class="edit confirmation" (click)="cancel('lastname')" matSuffix
+              >cancel</mat-icon
+            >
+          </div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="3" [rowspan]="1" class="tile-divider">
           <mat-divider></mat-divider>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="3" [rowspan]="7" class="tile-field">
-          <mat-form-field appearance="fill">
-            <input
-              type="email"
-              formControlName="email"
-              matInput
-              placeholder="Email"
-              value="{{ (user$ | async)?.email }}"
-            />
+          <mat-form-field appearance="standard">
+            <input type="email" formControlName="email" matInput placeholder="Email" />
             <mat-icon matPrefix>email</mat-icon>
             <mat-icon class="verified" matSuffix>verified</mat-icon>
             <mat-error *ngIf="email.errors">{{ errorFieldService.getFieldError(email.errors) }}</mat-error>
           </mat-form-field>
-          <mat-icon class="edit" (click)="enable(form.get('email'))" matSuffix>edit</mat-icon>
+          <mat-icon class="edit" *ngIf="!editMode.email" (click)="toggleEnable('email')" matSuffix>edit</mat-icon>
+          <div>
+            <mat-icon *ngIf="editMode.email" class="edit confirmation" (click)="update('email')" matSuffix
+              >done</mat-icon
+            >
+            <mat-icon *ngIf="editMode.email" class="edit confirmation" (click)="cancel('email')" matSuffix
+              >cancel</mat-icon
+            >
+          </div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="3" [rowspan]="7" class="tile-field">
-          <mat-form-field appearance="fill">
-            <input
-              type="text"
-              formControlName="phone"
-              appPhone
-              matInput
-              placeholder="Phone"
-              value="{{ (user$ | async)?.phone }}"
-            />
+          <mat-form-field appearance="standard">
+            <input type="text" formControlName="phone" appPhone matInput placeholder="Phone" />
             <mat-icon matPrefix>phone</mat-icon>
             <mat-icon class="verified" matSuffix>verified</mat-icon>
             <mat-error *ngIf="phone.errors">{{ errorFieldService.getFieldError(phone.errors) }}</mat-error>
           </mat-form-field>
-          <mat-icon class="edit" (click)="enable(form.get('phone'))" matSuffix>edit</mat-icon>
+          <mat-icon class="edit" *ngIf="!editMode.phone" (click)="toggleEnable('phone')" matSuffix>edit</mat-icon>
+          <div>
+            <mat-icon *ngIf="editMode.phone" class="edit confirmation" (click)="update('phone')" matSuffix
+              >done</mat-icon
+            >
+            <mat-icon *ngIf="editMode.phone" class="edit confirmation" (click)="cancel('phone')" matSuffix
+              >cancel</mat-icon
+            >
+          </div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="3" [rowspan]="7">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="standard">
             <mat-label>Birthdate</mat-label>
             <mat-icon matPrefix>cake</mat-icon>
-            <input
-              matInput
-              formControlName="birthdate"
-              value="{{ (user$ | async)?.birthdate }}"
-              [matDatepicker]="picker1"
-            />
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1 color="primary"></mat-datepicker>
+            <input matInput formControlName="birthdate" [matDatepicker]="birthdatePicker" />
+            <mat-datepicker-toggle matSuffix [for]="birthdatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #birthdatePicker color="primary"></mat-datepicker>
           </mat-form-field>
-          <mat-icon class="edit" (click)="enable(form.get('birthdate'))" matSuffix>edit</mat-icon>
+          <mat-icon class="edit" *ngIf="!editMode.birthdate" (click)="toggleEnable('birthdate')" matSuffix
+            >edit</mat-icon
+          >
+          <div>
+            <mat-icon *ngIf="editMode.birthdate" class="edit confirmation" (click)="update('birthdate')" matSuffix
+              >done</mat-icon
+            >
+            <mat-icon *ngIf="editMode.birthdate" class="edit confirmation" (click)="cancel('birthdate')" matSuffix
+              >cancel</mat-icon
+            >
+          </div>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-card-content>

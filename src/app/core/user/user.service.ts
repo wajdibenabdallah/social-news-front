@@ -7,14 +7,14 @@ import { User } from 'src/app/shared/model/user';
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileService {
+export class UserService {
   constructor(private http: HttpClient) {}
 
-  getCurrentUser(): Observable<User> {
+  findById(): Observable<User> {
     return this.http.get<User>(`${CONFIG.baseUrl}/api/me`);
   }
 
-  logout(): Observable<{ message: string }> {
-    return this.http.post<{ message: string }>(`${CONFIG.baseUrl}/api/logout`, null);
+  update(id: string, user: User): Observable<User> {
+    return this.http.put<User>(`${CONFIG.baseUrl}/api/user/${id}`, user);
   }
 }

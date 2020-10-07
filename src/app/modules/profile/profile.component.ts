@@ -2,7 +2,7 @@ import { ProfileService } from './profile.service';
 import { from, Observable } from 'rxjs';
 import { PostService } from './post/post.service';
 import { AuthGuardService } from '../../core/guard/auth-guard.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Post } from 'src/app/shared/model/post';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPostComponent } from './modal/new-post/new-post.component';
@@ -21,13 +21,21 @@ export class ProfileComponent implements OnInit {
   searchField: FormControl = new FormControl();
   searchForm = this.fb.group({ searchField: this.searchField });
   progress = false;
+  user$: Observable<User>;
 
-  constructor(private postService: PostService, private newPostModal: MatDialog, private fb: FormBuilder) {}
+  constructor(
+    private postService: PostService,
+    private newPostModal: MatDialog,
+    private fb: FormBuilder,
+    private profileService: ProfileService,
+  ) {}
 
   ngOnInit(): void {
+    // get user informations
+    this.user$ = this.profileService.getCurrentUser();
     // get all posts
     this.posts$ = this.postService.fetch();
-    // search
+    // search posts
     this.searchPosts$ = this.searchField.valueChanges.pipe(
       tap(() => (this.progress = true)),
       debounceTime(1000),
@@ -47,5 +55,9 @@ export class ProfileComponent implements OnInit {
       width: '70%',
       height: '70%',
     });
+  }
+
+  reloadUserData(): void {
+    this.user$ = this.profileService.getCurrentUser();
   }
 }
