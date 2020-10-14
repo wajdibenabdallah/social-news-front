@@ -21,9 +21,19 @@ mat-form-field {
 }
 
 .verified {
+  color: #868181;
   &:hover {
-    color: initial;
+    // pointer-events: none;
+    cursor: pointer;
   }
+}
+
+.yes {
+  color: #c5c5c5;
+}
+
+.no {
+  color: #ff0000;
 }
 
 .tile-field {

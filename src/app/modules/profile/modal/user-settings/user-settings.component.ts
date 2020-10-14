@@ -9,6 +9,8 @@ import { RegEx } from 'src/app/shared/class/reg-ex/reg-ex.enum';
 import { phoneValidator } from 'src/app/shared/validator/phone.validator';
 import { ErrorService } from 'src/app/shared/service/error/error.service';
 import { UserPanelComponent } from '../../user-panel/user-panel.component';
+import { Alert, ALERT_TYPE } from 'src/app/shared/model/alert';
+import { AlertService } from 'src/app/shared/component/alert/alert.service';
 
 @Component({
   selector: 'app-user-settings',
@@ -17,7 +19,7 @@ import { UserPanelComponent } from '../../user-panel/user-panel.component';
 })
 export class UserSettingsComponent implements OnInit {
   private form: FormGroup = this.fb.group({
-    firstname: new FormControl({ value: 'wajjjj', disabled: true }, [
+    firstname: new FormControl({ value: '', disabled: true }, [
       Validators.required,
       Validators.minLength(5),
       Validators.maxLength(20),
@@ -55,6 +57,7 @@ export class UserSettingsComponent implements OnInit {
     public errorFieldService: ErrorService,
     private userService: UserService,
     private confirmationModalDialog: MatDialog,
+    private alert: AlertService,
   ) {}
 
   ngOnInit(): void {
@@ -131,6 +134,17 @@ export class UserSettingsComponent implements OnInit {
 
   close(): void {
     this.dialogRef.close();
+  }
+
+  checkEmail(): void {
+    this.userService.validMail().subscribe(() => {
+      const alert: Alert = {
+        title: `Mail verification`,
+        message: `Confirmation  has been sent, check your mail`,
+        type: ALERT_TYPE.INFORMATION,
+      };
+      this.alert.newAlert(alert);
+    });
   }
 
   get firstname() {

@@ -11,6 +11,7 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AuthGuardService],
   },
+  { path: 'aws/verify', redirectTo: 'profile' },
   { path: '**', redirectTo: '' },
 ];
 

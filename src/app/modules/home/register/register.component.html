@@ -9,15 +9,15 @@
       <mat-grid-list cols="2" rowHeight="3:1">
         <mat-grid-tile>
           <mat-form-field class="field">
-            <input matInput type="text" placeholder="Firstname" formControlName="firstName" />
-            <mat-error *ngIf="firstName.errors">{{ errorFieldService.getFieldError(firstName.errors) }}</mat-error>
+            <input matInput type="text" placeholder="Firstname" formControlName="firstname" />
+            <mat-error *ngIf="firstname.errors">{{ errorFieldService.getFieldError(firstname.errors) }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile>
           <mat-form-field class="">
-            <input type="text" matInput placeholder="Lastname" formControlName="lastName" />
-            <mat-error *ngIf="lastName.errors">{{ errorFieldService.getFieldError(lastName.errors) }}</mat-error>
+            <input type="text" matInput placeholder="Lastname" formControlName="lastname" />
+            <mat-error *ngIf="lastname.errors">{{ errorFieldService.getFieldError(lastname.errors) }}</mat-error>
           </mat-form-field>
         </mat-grid-tile>
 

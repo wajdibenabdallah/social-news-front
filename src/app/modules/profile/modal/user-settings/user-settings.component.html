@@ -50,7 +50,10 @@
           <mat-form-field appearance="standard">
             <input type="email" formControlName="email" matInput placeholder="Email" />
             <mat-icon matPrefix>email</mat-icon>
-            <mat-icon class="verified" matSuffix>verified</mat-icon>
+            <mat-icon *ngIf="(user$ | async)?.emailValid" class="verified yes" matSuffix>verified_user</mat-icon>
+            <mat-icon *ngIf="!(user$ | async)?.emailValid" (click)="checkEmail()" class="verified no" matSuffix
+              >error</mat-icon
+            >
             <mat-error *ngIf="email.errors">{{ errorFieldService.getFieldError(email.errors) }}</mat-error>
           </mat-form-field>
           <mat-icon class="edit" *ngIf="!editMode.email" (click)="toggleEnable('email')" matSuffix>edit</mat-icon>
@@ -67,7 +70,8 @@
           <mat-form-field appearance="standard">
             <input type="text" formControlName="phone" appPhone matInput placeholder="Phone" />
             <mat-icon matPrefix>phone</mat-icon>
-            <mat-icon class="verified" matSuffix>verified</mat-icon>
+            <mat-icon *ngIf="true" class="verified" matSuffix>verified_user</mat-icon>
+            <mat-icon *ngIf="false" class="verified" matSuffix>error</mat-icon>
             <mat-error *ngIf="phone.errors">{{ errorFieldService.getFieldError(phone.errors) }}</mat-error>
           </mat-form-field>
           <mat-icon class="edit" *ngIf="!editMode.phone" (click)="toggleEnable('phone')" matSuffix>edit</mat-icon>

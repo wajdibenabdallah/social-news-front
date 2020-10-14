@@ -3,7 +3,9 @@ export interface User {
   firstname: string;
   lastname: string;
   phone: Phone;
+  phonealid: boolean;
   email: string;
+  emailValid: boolean;
   password: string;
   birthdate: Date;
 }

@@ -17,4 +17,11 @@ export class UserService {
   update(id: string, user: User): Observable<User> {
     return this.http.put<User>(`${CONFIG.baseUrl}/api/user/${id}`, user);
   }
+
+  validMail(): Observable<{ ResponseMetadata: { RequestId: String }; MessageId: String }> {
+    return this.http.post<{ ResponseMetadata: { RequestId: String }; MessageId: String }>(
+      `${CONFIG.baseUrl}/aws/send/`,
+      {},
+    );
+  }
 }

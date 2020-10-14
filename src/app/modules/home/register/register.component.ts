@@ -20,8 +20,8 @@ import { ErrorService } from 'src/app/shared/service/error/error.service';
 export class RegisterComponent implements OnInit {
   private form: FormGroup = this.fb.group(
     {
-      firstName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
-      lastName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
+      firstname: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
+      lastname: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
       email: new FormControl('', [Validators.required, Validators.pattern(RegEx.IS_EMAIL)]),
       phone: new FormControl('', Validators.compose([Validators.required, phoneValidator()])),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
@@ -59,12 +59,12 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  get firstName() {
-    return this.form.get('firstName') as FormControl;
+  get firstname() {
+    return this.form.get('firstname') as FormControl;
   }
 
-  get lastName() {
-    return this.form.get('lastName') as FormControl;
+  get lastname() {
+    return this.form.get('lastname') as FormControl;
   }
 
   get email() {
