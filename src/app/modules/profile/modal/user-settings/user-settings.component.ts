@@ -137,7 +137,7 @@ export class UserSettingsComponent implements OnInit {
   }
 
   checkEmail(): void {
-    this.userService.validMail().subscribe(() => {
+    this.userService.checkEmail().subscribe(() => {
       const alert: Alert = {
         title: `Mail verification`,
         message: `Confirmation  has been sent, check your mail`,

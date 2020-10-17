@@ -18,10 +18,14 @@ export class UserService {
     return this.http.put<User>(`${CONFIG.baseUrl}/api/user/${id}`, user);
   }
 
-  validMail(): Observable<{ ResponseMetadata: { RequestId: String }; MessageId: String }> {
+  checkEmail(): Observable<{ ResponseMetadata: { RequestId: String }; MessageId: String }> {
     return this.http.post<{ ResponseMetadata: { RequestId: String }; MessageId: String }>(
       `${CONFIG.baseUrl}/aws/send/`,
       {},
     );
+  }
+
+  validEmail(token: string): Observable<Boolean> {
+    return this.http.get<Boolean>(`${CONFIG.baseUrl}/aws/verify/`, { params: { token: token } });
   }
 }
