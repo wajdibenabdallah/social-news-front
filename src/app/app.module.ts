@@ -42,6 +42,7 @@ import { UserPanelComponent } from './modules/profile/user-panel/user-panel.comp
 import { UserSettingsComponent } from './modules/profile/modal/user-settings/user-settings.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ConfirmationModalComponent } from './shared/component/confirmation-modal/confirmation-modal.component';
+import { FooterComponent } from './shared/component/footer/footer/footer.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -67,6 +68,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     UserPanelComponent,
     UserSettingsComponent,
     ConfirmationModalComponent,
+    FooterComponent,
   ],
   entryComponents: [NewPostComponent],
   imports: [
