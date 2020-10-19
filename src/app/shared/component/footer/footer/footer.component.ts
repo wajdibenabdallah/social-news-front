@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { version } from '../../../../../../package.json';
+// import { version } from '../../../../../../package.json';
 
 @Component({
   selector: 'app-footer',
@@ -11,6 +11,6 @@ export class FooterComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.version = version;
+    this.version = '1.0.0';
   }
 }

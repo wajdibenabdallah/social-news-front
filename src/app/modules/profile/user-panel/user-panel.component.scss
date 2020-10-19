@@ -11,3 +11,15 @@
 .container {
   height: -webkit-fill-available;
 }
+
+.bio {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.bio .textarea {
+  overflow-y: hidden;
+  max-height: 200px !important;
+  min-height: 150px !important;
+  height: auto !important;
+}

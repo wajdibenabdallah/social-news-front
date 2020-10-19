@@ -20,13 +20,20 @@
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <p>
-      Ingénieur Informaticien diplômé depuis 2015 de l‘Institut Supérieur de Sciences Appliquées et de Technologie de
-      Sousse, occupant le poste d'un consultant FullStack js chez Synopsia. Je suis en recherche permanente de nouveaux
-      challenges, et intéressé à savoir et découvrir l'évolution de l'informatique. Au-delà des technologies, j’accorde
-      une immense importance à mon environnement et mon cadre de travail (valeurs, communication, partage, rigueur,
-      ambiance,…). Mes compétences évoluent au rythme des évolutions technologiques et méthodologiques.
-    </p>
+    <mat-form-field class="bio" appearance="outline">
+      <mat-label>Bio</mat-label>
+      <textarea
+        class="textarea"
+        readonly
+        cdkTextareaAutosize
+        matInput
+        cdkAutosizeMinRows="10"
+        cdkAutosizeMaxRows="30"
+        cols="80"
+      >
+          {{ bio }}
+      </textarea>
+    </mat-form-field>
   </mat-card-content>
   <mat-card-actions></mat-card-actions>
 </mat-card>
