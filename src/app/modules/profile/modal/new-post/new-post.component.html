@@ -4,15 +4,36 @@
   </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
-      <h1 mat-dialog-title>Add New Post</h1>
+      <h1 mat-dialog-title class="label-add-new-post">Add New Post</h1>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="1">
       <mat-form-field class="new-post-title">
-        <input formControlName="title" matInput placeholder="Title" />
+        <input formControlName="title" matInput placeholder="Title" required />
         <mat-error *ngIf="form.get('title').errors">{{ errorFieldService.getFieldError(title.errors) }}</mat-error>
       </mat-form-field>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="4" [rowspan]="5">
+    <mat-grid-tile [colspan]="1" [rowspan]="5">
+      <mat-form-field class="new-post-image">
+        <ngx-mat-file-input
+          formControlName="image"
+          #removableInput
+          placeholder="Set an image"
+          (change)="onUploadImage()"
+        ></ngx-mat-file-input>
+        <img [src]="displayImage" class="image-resize" />
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          *ngIf="!removableInput.empty"
+          (click)="removableInput.clear($event); displayImage = ''"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+        <mat-error *ngIf="image">{{ getFieldError(image.errors) }}</mat-error>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="5">
       <mat-form-field class="new-post-text">
         <textarea
           formControlName="text"
@@ -21,17 +42,9 @@
           cdkAutosizeMinRows="20"
           cdkAutosizeMaxRows="50"
           placeholder="Type your text"
+          required
         ></textarea>
         <mat-error *ngIf="form.get('text').errors">{{ errorFieldService.getFieldError(text.errors) }}</mat-error>
-      </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="4" [rowspan]="3"
-      ><mat-form-field class="new-post-image">
-        <ngx-mat-file-input formControlName="image" #removableInput placeholder="Set an image"></ngx-mat-file-input>
-        <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
-          <mat-icon>clear</mat-icon>
-        </button>
-        <mat-error *ngIf="image">{{ getFieldError(image.errors) }}</mat-error>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1" [rowspan]="1">

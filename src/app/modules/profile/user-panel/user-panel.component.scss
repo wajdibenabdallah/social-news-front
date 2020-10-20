@@ -18,7 +18,7 @@
 }
 
 .bio .textarea {
-  overflow-y: hidden;
+  overflow-y: scroll;
   max-height: 200px !important;
   min-height: 150px !important;
   height: auto !important;

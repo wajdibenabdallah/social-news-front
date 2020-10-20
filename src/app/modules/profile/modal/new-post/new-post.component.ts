@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RegEx } from 'src/app/shared/class/reg-ex/reg-ex.enum';
@@ -19,6 +19,10 @@ export class NewPostComponent {
 
   errorFieldService: ErrorService;
   spinner: boolean;
+  displayImage: any;
+
+  @ViewChild('removableInput') private removableInput = null;
+
   constructor(
     private fb: FormBuilder,
     private service: PostService,
@@ -39,7 +43,9 @@ export class NewPostComponent {
     const formDataPost = new FormData();
     formDataPost.append('title', this.form.value.title);
     formDataPost.append('text', this.form.value.text);
-    formDataPost.append('image', this.form.value.image._files[0]);
+    if (this.form.value.image?._files) {
+      formDataPost.append('image', this.form.value.image._files[0]);
+    }
     this.service.post(formDataPost).subscribe(
       () => {
         this.onCancel();
@@ -55,6 +61,15 @@ export class NewPostComponent {
 
   onCancel(): void {
     this.newPostRef.close();
+  }
+
+  onUploadImage(): void {
+    const reader = new FileReader();
+    reader.readAsDataURL(this.form.value.image._files[0]);
+    reader.onload = (loadEvent: any) => {
+      // TODO
+      this.displayImage = loadEvent.target.result;
+    };
   }
 
   get title() {

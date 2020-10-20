@@ -18,7 +18,8 @@
 }
 
 .main-container {
-  height: -webkit-fill-available;
+  height: auto;
+  min-height: 100%;
 }
 
 .settings {

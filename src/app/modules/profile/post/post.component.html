@@ -7,22 +7,13 @@
   <mat-card-content>
     <mat-grid-list cols="10" rowHeight="1:2">
       <mat-grid-tile class="post-image" [colspan]="3">
-        <img
-          mat-card-image
-          src="{{ post.data.imageUri | imageUri }}"
-          alt="Just for test"
-          class="image-resize"
-        />
+        <img mat-card-image src="{{ post.data.imageUri | imageUri }}" alt="Just for test" class="image-resize" />
       </mat-grid-tile>
       <mat-grid-tile class="post-text" [colspan]="7">
-        <p class="text-resize">
-          {{ post.data.text }}
-        </p>
+        <p class="text-resize" #text>{{ post.data.text }}</p>
+        <p class="read-more" *ngIf="post.data.text.length > 500" (click)="moreInfo()" #more>Click for more ...</p>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
+  <mat-card-actions></mat-card-actions>
 </mat-card>
