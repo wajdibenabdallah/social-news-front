@@ -16,16 +16,16 @@
             <input type="text" [formControl]="firstname" matInput placeholder="Firstname" />
             <mat-error *ngIf="firstname.errors">{{ errorFieldService.getFieldError(firstname.errors) }}</mat-error>
           </mat-form-field>
-          <mat-icon *ngIf="!editMode.firstname" class="edit" (click)="toggleEnable('firstname')" matSuffix
-            >edit</mat-icon
-          >
+          <mat-icon *ngIf="!editMode.firstname" class="edit" (click)="toggleEnable('firstname')" matSuffix>
+            edit
+          </mat-icon>
           <div>
-            <mat-icon *ngIf="editMode.firstname" class="edit confirmation" (click)="update('firstname')" matSuffix
-              >done</mat-icon
-            >
-            <mat-icon *ngIf="editMode.firstname" class="edit confirmation" (click)="cancel('firstname')" matSuffix
-              >cancel</mat-icon
-            >
+            <mat-icon *ngIf="editMode.firstname" class="edit confirmation" (click)="update('firstname')" matSuffix>
+              done
+            </mat-icon>
+            <mat-icon *ngIf="editMode.firstname" class="edit confirmation" (click)="cancel('firstname')" matSuffix>
+              cancel
+            </mat-icon>
           </div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="7" class="tile-field">
@@ -51,9 +51,9 @@
             <input type="email" formControlName="email" matInput placeholder="Email" />
             <mat-icon matPrefix>email</mat-icon>
             <mat-icon *ngIf="(user$ | async)?.emailValid" class="verified yes" matSuffix>verified_user</mat-icon>
-            <mat-icon *ngIf="!(user$ | async)?.emailValid" (click)="checkEmail()" class="verified no" matSuffix
-              >error</mat-icon
-            >
+            <mat-icon *ngIf="!(user$ | async)?.emailValid" (click)="checkEmail()" class="verified no" matSuffix>
+              error
+            </mat-icon>
             <mat-error *ngIf="email.errors">{{ errorFieldService.getFieldError(email.errors) }}</mat-error>
           </mat-form-field>
           <mat-icon class="edit" *ngIf="!editMode.email" (click)="toggleEnable('email')" matSuffix>edit</mat-icon>

@@ -23,3 +23,17 @@
   min-height: 150px !important;
   height: auto !important;
 }
+
+.edit {
+  cursor: pointer;
+  &:hover {
+    background-color: #c5c5c5;
+    border-radius: 5px;
+  }
+}
+
+.confirmation {
+  font-size: 15px;
+  height: auto;
+  width: auto;
+}

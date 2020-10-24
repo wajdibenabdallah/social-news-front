@@ -1,9 +1,24 @@
 import { UserSettingsComponent } from '../modal/user-settings/user-settings.component';
-import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+  TemplateRef,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AuthGuardService } from 'src/app/core/guard/auth-guard.service';
 import { User } from 'src/app/shared/model/user';
+import { UserService } from 'src/app/core/user/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Alert, ALERT_TYPE } from 'src/app/shared/model/alert';
+import { AlertService } from 'src/app/shared/component/alert/alert.service';
 
 @Component({
   selector: 'app-user-panel',
@@ -13,15 +28,26 @@ import { User } from 'src/app/shared/model/user';
 export class UserPanelComponent implements OnInit {
   @Input() user$: Observable<User>;
   @Output() updateUserEvent = new EventEmitter();
+
   bio: string;
-  constructor(private authGuard: AuthGuardService, private settingsModal: MatDialog) {}
+  userId: string;
+
+  private editMode = {
+    bio: false,
+  };
+  constructor(
+    private authGuard: AuthGuardService,
+    private settingsModal: MatDialog,
+    private userService: UserService,
+    private snackBar: MatSnackBar,
+    private alert: AlertService,
+  ) {}
 
   ngOnInit(): void {
-    this.bio = `Ingénieur Informaticien diplômé depuis 2015 de l‘Institut Supérieur de Sciences Appliquées et de Technologie de
-    Sousse, occupant le poste d'un consultant FullStack js chez Synopsia. Je suis en recherche permanente de nouveaux
-    challenges, et intéressé à savoir et découvrir l'évolution de l'informatique. Au-delà des technologies, j’accorde
-    une immense importance à mon environnement et mon cadre de travail (valeurs, communication, partage, rigueur,
-    ambiance,…). Mes compétences évoluent au rythme des évolutions technologiques et méthodologiques.`;
+    this.user$.subscribe((user) => {
+      this.userId = user.id;
+      this.bio = user.bio;
+    });
   }
 
   settings(): void {
@@ -37,8 +63,31 @@ export class UserPanelComponent implements OnInit {
       });
   }
 
-  closeModal(): void {
-    console.log('closeModal');
+  editBio(): void {
+    this.toggleEditBio();
+  }
+
+  updateBio(): void {
+    this.userService.update(this.userId, { bio: this.bio }).subscribe(() => {
+      /*
+      this.snackBar.open('Bio was updated', '', { duration: 3000, verticalPosition: 'top', panelClass: 'snack-bar' });
+      */
+      const alert: Alert = {
+        title: 'Success',
+        message: 'Bio was updated',
+        type: ALERT_TYPE.SUCCESS,
+      };
+      this.alert.newAlert(alert);
+    });
+    this.toggleEditBio();
+  }
+
+  cancelBio(): void {
+    this.toggleEditBio();
+  }
+
+  toggleEditBio(): void {
+    this.editMode.bio = !this.editMode.bio;
   }
 
   logout(): void {

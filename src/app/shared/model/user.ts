@@ -1,16 +1,12 @@
 export interface User {
-  _id: string;
+  id: string;
   firstname: string;
   lastname: string;
-  phone: Phone;
+  phone: string;
   phonealid: boolean;
   email: string;
   emailValid: boolean;
   password: string;
   birthdate: Date;
-}
-
-export interface Phone {
-  number: number;
-  country: number;
+  bio: string;
 }

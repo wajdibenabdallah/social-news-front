@@ -24,16 +24,21 @@
       <mat-label>Bio</mat-label>
       <textarea
         class="textarea"
-        readonly
         cdkTextareaAutosize
         matInput
         cdkAutosizeMinRows="10"
         cdkAutosizeMaxRows="30"
         cols="80"
+        [(ngModel)]="bio"
+        [disabled]="!editMode.bio"
       >
-          {{ bio }}
       </textarea>
     </mat-form-field>
+    <mat-icon *ngIf="!editMode.bio" class="edit" (click)="editBio()" matSuffix> edit </mat-icon>
+    <div>
+      <mat-icon *ngIf="editMode.bio" class="edit confirmation" (click)="updateBio()" matSuffix> done </mat-icon>
+      <mat-icon *ngIf="editMode.bio" class="edit confirmation" (click)="cancelBio()" matSuffix> cancel </mat-icon>
+    </div>
   </mat-card-content>
   <mat-card-actions></mat-card-actions>
 </mat-card>

@@ -14,7 +14,7 @@ export class UserService {
     return this.http.get<User>(`${CONFIG.baseUrl}/api/me`);
   }
 
-  update(id: string, user: User): Observable<User> {
+  update(id: string, user: User | any): Observable<User> {
     return this.http.put<User>(`${CONFIG.baseUrl}/api/user/${id}`, user);
   }
 

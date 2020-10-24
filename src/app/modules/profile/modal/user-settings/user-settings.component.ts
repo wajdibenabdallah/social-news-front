@@ -62,7 +62,7 @@ export class UserSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user$.subscribe((user: User) => {
-      this.userId = user._id;
+      this.userId = user.id;
       this.initUser = user;
       this.form.controls['firstname'].setValue(user.firstname);
       this.form.controls['lastname'].setValue(user.lastname);
