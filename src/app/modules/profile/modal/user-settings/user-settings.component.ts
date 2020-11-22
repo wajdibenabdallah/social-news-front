@@ -1,7 +1,7 @@
 import { ConfirmationModalComponent } from './../../../../shared/component/confirmation-modal/confirmation-modal.component';
 import { UserService } from './../../../../core/user/user.service';
 import { Observable } from 'rxjs';
-import { Component, Inject, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Inject, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/shared/model/user';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -29,6 +29,7 @@ export class UserSettingsComponent implements OnInit {
       Validators.minLength(5),
       Validators.maxLength(20),
     ]),
+    avatar: ['', Validators.pattern(RegEx.IS_VALID_IMAGE)],
     email: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.pattern(RegEx.IS_EMAIL)]),
     phone: new FormControl({ value: '', disabled: true }, Validators.compose([Validators.required, phoneValidator()])),
     birthdate: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(8)]),
@@ -49,6 +50,8 @@ export class UserSettingsComponent implements OnInit {
 
   private userId: string;
   updateUserEvent = new EventEmitter();
+
+  @ViewChild('avatar') avatar: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public user$: Observable<User>,
@@ -145,6 +148,11 @@ export class UserSettingsComponent implements OnInit {
       };
       this.alert.newAlert(alert);
     });
+  }
+
+  onUploadAvatar(): void {
+    const avatar = this.avatar.nativeElement;
+    avatar.click();
   }
 
   get firstname() {

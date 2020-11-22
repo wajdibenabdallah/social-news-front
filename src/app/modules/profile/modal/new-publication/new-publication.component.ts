@@ -3,14 +3,14 @@ import { FormBuilder, FormControl, ValidationErrors, Validators } from '@angular
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RegEx } from 'src/app/shared/class/reg-ex/reg-ex.enum';
 import { ErrorService } from 'src/app/shared/service/error/error.service';
-import { PostService } from '../../post/post.service';
+import { PublicationService } from '../../publication/publication.service';
 
 @Component({
-  selector: 'app-new-post',
-  templateUrl: './new-post.component.html',
-  styleUrls: ['./new-post.component.scss'],
+  selector: 'app-new-publication',
+  templateUrl: './new-publication.component.html',
+  styleUrls: ['./new-publication.component.scss'],
 })
-export class NewPostComponent {
+export class NewPublicationComponent {
   private form = this.fb.group({
     title: ['', Validators.required],
     text: ['', [Validators.required, Validators.minLength(50)]],
@@ -25,14 +25,14 @@ export class NewPostComponent {
 
   constructor(
     private fb: FormBuilder,
-    private service: PostService,
-    private newPostRef: MatDialogRef<NewPostComponent>,
+    private service: PublicationService,
+    private newPublicationRef: MatDialogRef<NewPublicationComponent>,
     private container: ElementRef,
     // todo
     @Inject(MAT_DIALOG_DATA) public data: any,
     public _errorFieldService: ErrorService,
   ) {
-    newPostRef.disableClose = true;
+    newPublicationRef.disableClose = true;
     this.spinner = false;
     this.errorFieldService = _errorFieldService;
   }
@@ -40,13 +40,13 @@ export class NewPostComponent {
   onSubmit(): void {
     this.spinner = true;
     this.container.nativeElement.children[0].classList.add('loading');
-    const formDataPost = new FormData();
-    formDataPost.append('title', this.form.value.title);
-    formDataPost.append('text', this.form.value.text);
+    const formDataPublication = new FormData();
+    formDataPublication.append('title', this.form.value.title);
+    formDataPublication.append('text', this.form.value.text);
     if (this.form.value.image?._files) {
-      formDataPost.append('image', this.form.value.image._files[0]);
+      formDataPublication.append('publicationImage', this.form.value.image._files[0]);
     }
-    this.service.post(formDataPost).subscribe(
+    this.service.post(formDataPublication).subscribe(
       () => {
         this.onCancel();
         this.refresh();
@@ -60,14 +60,13 @@ export class NewPostComponent {
   }
 
   onCancel(): void {
-    this.newPostRef.close();
+    this.newPublicationRef.close();
   }
 
   onUploadImage(): void {
     const reader = new FileReader();
     reader.readAsDataURL(this.form.value.image._files[0]);
     reader.onload = (loadEvent: any) => {
-      // TODO
       this.displayImage = loadEvent.target.result;
     };
   }

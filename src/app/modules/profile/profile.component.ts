@@ -1,11 +1,11 @@
 import { ProfileService } from './profile.service';
 import { from, Observable } from 'rxjs';
-import { PostService } from './post/post.service';
+import { PublicationService } from './publication/publication.service';
 import { AuthGuardService } from '../../core/guard/auth-guard.service';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Post } from 'src/app/shared/model/post';
+import { Publication } from 'src/app/shared/model/publication';
 import { MatDialog } from '@angular/material/dialog';
-import { NewPostComponent } from './modal/new-post/new-post.component';
+import { NewPublicationComponent } from './modal/new-publication/new-publication.component';
 import { User } from 'src/app/shared/model/user';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime, switchMap, tap, mergeMap } from 'rxjs/operators';
@@ -16,16 +16,16 @@ import { debounceTime, switchMap, tap, mergeMap } from 'rxjs/operators';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  posts$: Observable<Post[]>;
-  searchPosts$: Observable<Post[]>;
+  publications$: Observable<Publication[]>;
+  searchPublications$: Observable<Publication[]>;
   searchField: FormControl = new FormControl();
   searchForm = this.fb.group({ searchField: this.searchField });
   progress = false;
   user$: Observable<User>;
 
   constructor(
-    private postService: PostService,
-    private newPostModal: MatDialog,
+    private publicationService: PublicationService,
+    private newPublicationModal: MatDialog,
     private fb: FormBuilder,
     private profileService: ProfileService,
   ) {}
@@ -33,16 +33,16 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     // get user informations
     this.user$ = this.profileService.getCurrentUser();
-    // get all posts
-    this.posts$ = this.postService.fetch();
-    // search posts
-    this.searchPosts$ = this.searchField.valueChanges.pipe(
+    // get all publications
+    this.publications$ = this.publicationService.fetch();
+    // search publications
+    this.searchPublications$ = this.searchField.valueChanges.pipe(
       tap(() => (this.progress = true)),
       debounceTime(1000),
       tap(() => (this.progress = false)),
       mergeMap((value: string) => {
         if (value !== '') {
-          return this.postService.fetch({ title: value });
+          return this.publicationService.fetch({ title: value });
         } else {
           return from([]);
         }
@@ -50,8 +50,8 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  newPost(): void {
-    this.newPostModal.open(NewPostComponent, {
+  newPublication(): void {
+    this.newPublicationModal.open(NewPublicationComponent, {
       width: '70%',
       height: '70%',
     });

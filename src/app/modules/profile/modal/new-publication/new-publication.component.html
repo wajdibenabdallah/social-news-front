@@ -1,19 +1,19 @@
-<mat-grid-list cols="4" rowHeight="fit" class="new-post">
-  <div *ngIf="spinner" class="post-spinner">
+<mat-grid-list cols="4" rowHeight="fit" class="new-publication">
+  <div *ngIf="spinner" class="publication-spinner">
     <mat-spinner></mat-spinner>
   </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
-      <h1 mat-dialog-title class="label-add-new-post">Add New Post</h1>
+      <h1 mat-dialog-title class="label-add-new-publication">Add New Publication</h1>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="1">
-      <mat-form-field class="new-post-title">
+      <mat-form-field class="new-publication-title">
         <input formControlName="title" matInput placeholder="Title" required />
         <mat-error *ngIf="form.get('title').errors">{{ errorFieldService.getFieldError(title.errors) }}</mat-error>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1" [rowspan]="5">
-      <mat-form-field class="new-post-image">
+      <mat-form-field class="new-publication-image">
         <ngx-mat-file-input
           formControlName="image"
           #removableInput
@@ -34,7 +34,7 @@
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3" [rowspan]="5">
-      <mat-form-field class="new-post-text">
+      <mat-form-field class="new-publication-text">
         <textarea
           formControlName="text"
           cdkTextareaAutosize
@@ -49,7 +49,7 @@
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <button mat-button (click)="onCancel()">Cancel</button>
-      <button mat-button [disabled]="form.invalid" type="submit">Post</button>
+      <button mat-button [disabled]="form.invalid" type="submit">Save</button>
     </mat-grid-tile>
   </form>
 </mat-grid-list>

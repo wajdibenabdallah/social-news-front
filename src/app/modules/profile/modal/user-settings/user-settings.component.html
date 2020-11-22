@@ -9,7 +9,9 @@
     <mat-card-content>
       <mat-grid-list cols="3" rowHeight="10px">
         <mat-grid-tile [colspan]="1" [rowspan]="14">
-          <div mat-card-avatar class="profile-avatar"></div>
+          <div mat-card-avatar class="profile-avatar" (click)="onUploadAvatar()">
+            <input #avatar type="file" formControlName="avatar" style="display: none" />
+          </div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="7" class="tile-field">
           <mat-form-field appearance="standard">

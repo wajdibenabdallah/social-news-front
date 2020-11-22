@@ -1,4 +1,4 @@
-import { CONFIG } from './../../config/server';
+import { CONFIG } from '../../config/server';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

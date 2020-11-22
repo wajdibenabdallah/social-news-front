@@ -7,7 +7,7 @@
       <mat-tab-group>
         <mat-tab label="News">
           <mat-card class="settings">
-            <button class="my-fab" mat-mini-fab color="primary" (click)="newPost()">
+            <button class="my-fab" mat-mini-fab color="primary" (click)="newPublication()">
               <mat-icon>post_add</mat-icon>
             </button>
             <form class="search" [formGroup]="searchForm">
@@ -22,15 +22,22 @@
                 />
                 <mat-progress-bar class="input-progress" *ngIf="progress" mode="indeterminate"></mat-progress-bar>
                 <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option class="search-title" *ngFor="let post of searchPosts$ | async" [value]="post.data.title">
-                    <span [innerHTML]="post.data.title | highlight: search.value"></span>
+                  <mat-option
+                    class="search-title"
+                    *ngFor="let publication of searchPublications$ | async"
+                    [value]="publication.title"
+                  >
+                    <span [innerHTML]="publication.title | highlight: search.value"></span>
                   </mat-option>
                 </mat-autocomplete>
                 <mat-icon matSuffix>search</mat-icon>
               </mat-form-field>
             </form>
           </mat-card>
-          <app-post [post]="post" *ngFor="let post of posts$ | async"></app-post>
+          <app-publication
+            [publication]="publication"
+            *ngFor="let publication of publications$ | async"
+          ></app-publication>
         </mat-tab>
       </mat-tab-group>
     </mat-card>

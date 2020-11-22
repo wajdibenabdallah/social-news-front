@@ -32,12 +32,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { PhoneDirective } from './shared/directive/phone.directive';
-import { PostComponent } from './modules/profile/post/post.component';
-import { NewPostComponent } from './modules/profile/modal/new-post/new-post.component';
+import { PublicationComponent } from './modules/profile/publication/publication.component';
+import { NewPublicationComponent } from './modules/profile/modal/new-publication/new-publication.component';
 import { MaterialFileInputModule, NGX_MAT_FILE_INPUT_CONFIG } from 'ngx-material-file-input';
 import { FirstnamePipe } from './shared/pipe/user/firstname.pipe';
 import { LastnamePipe } from './shared/pipe/user/lastname.pipe';
-import { ImageUriPipe } from './shared/pipe/post/image-uri.pipe';
+import { ImageUriPipe } from './shared/pipe/publication/image-uri.pipe';
 import { HighlightPipe } from './shared/pipe/search/highlight.pipe';
 import { UserPanelComponent } from './modules/profile/user-panel/user-panel.component';
 import { UserSettingsComponent } from './modules/profile/modal/user-settings/user-settings.component';
@@ -60,8 +60,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     ProfileComponent,
     AlertComponent,
     PhoneDirective,
-    PostComponent,
-    NewPostComponent,
+    PublicationComponent,
+    NewPublicationComponent,
     FirstnamePipe,
     LastnamePipe,
     ImageUriPipe,
@@ -71,7 +71,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     ConfirmationModalComponent,
     FooterComponent,
   ],
-  entryComponents: [NewPostComponent],
+  entryComponents: [NewPublicationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

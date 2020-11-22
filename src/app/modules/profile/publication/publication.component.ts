@@ -1,14 +1,14 @@
 import { element } from 'protractor';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Post } from 'src/app/shared/model/post';
+import { Publication } from 'src/app/shared/model/publication';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss'],
+  selector: 'app-publication',
+  templateUrl: './publication.component.html',
+  styleUrls: ['./publication.component.scss'],
 })
-export class PostComponent implements OnInit {
-  @Input() post: { data: Post };
+export class PublicationComponent implements OnInit {
+  @Input() publication: { data: Publication };
   @ViewChild('text') text: ElementRef;
   @ViewChild('more') more: ElementRef;
   constructor() {}

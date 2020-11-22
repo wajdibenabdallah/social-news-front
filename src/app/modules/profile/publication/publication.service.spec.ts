@@ -1,8 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { PostService } from './post.service';
+import { PublicationService } from './publication.service';
 
-describe('PostService', () => {
+describe('PublicationService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
@@ -10,7 +10,7 @@ describe('PostService', () => {
   );
 
   it('should be created', () => {
-    const service: PostService = TestBed.inject(PostService);
+    const service: PublicationService = TestBed.inject(PublicationService);
     expect(service).toBeTruthy();
   });
 });
