@@ -10,7 +10,7 @@ export class UserResolver implements Resolve<User> {
   constructor(private service: UserService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-    return this.service.validEmail(route.queryParams.token).subscribe((data) => {
+    return this.service.validEmail(route.queryParams.token).subscribe(() => {
       this.router.navigate(['profile']);
     });
   }

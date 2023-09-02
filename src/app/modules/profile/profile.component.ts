@@ -1,7 +1,7 @@
 import { ProfileService } from './profile.service';
 import { from, Observable } from 'rxjs';
 import { PublicationService } from './publication/publication.service';
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Publication } from 'src/app/shared/model/publication';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPublicationComponent } from './modal/new-publication/new-publication.component';
@@ -43,6 +43,7 @@ export class ProfileComponent implements OnInit {
         if (value !== '') {
           return this.publicationService.fetch({ title: value });
         } else {
+          this.publications$ = this.publicationService.fetch({ title: value });
           return from([]);
         }
       }),
@@ -58,5 +59,9 @@ export class ProfileComponent implements OnInit {
 
   reloadUserData(): void {
     this.user$ = this.profileService.getCurrentUser();
+  }
+
+  clickSearchResult(value: string): void {
+    this.publications$ = this.publicationService.fetch({ title: value });
   }
 }

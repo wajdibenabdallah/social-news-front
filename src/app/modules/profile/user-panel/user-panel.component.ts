@@ -1,22 +1,10 @@
 import { UserSettingsComponent } from '../modal/user-settings/user-settings.component';
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-  EventEmitter,
-  ViewChild,
-  ElementRef,
-  TemplateRef,
-} from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AuthGuardService } from 'src/app/core/guard/auth-guard.service';
 import { User } from 'src/app/shared/model/user';
 import { UserService } from 'src/app/core/user/user.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Alert, ALERT_TYPE } from 'src/app/shared/model/alert';
 import { AlertService } from 'src/app/shared/component/alert/alert.service';
 
@@ -39,7 +27,6 @@ export class UserPanelComponent implements OnInit {
     private authGuard: AuthGuardService,
     private settingsModal: MatDialog,
     private userService: UserService,
-    private snackBar: MatSnackBar,
     private alert: AlertService,
   ) {}
 
@@ -69,9 +56,6 @@ export class UserPanelComponent implements OnInit {
 
   updateBio(): void {
     this.userService.update(this.userId, { bio: this.bio }).subscribe(() => {
-      /*
-      this.snackBar.open('Bio was updated', '', { duration: 3000, verticalPosition: 'top', panelClass: 'snack-bar' });
-      */
       const alert: Alert = {
         title: 'Success',
         message: 'Bio was updated',

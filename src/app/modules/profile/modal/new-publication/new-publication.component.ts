@@ -4,6 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RegEx } from 'src/app/shared/class/reg-ex/reg-ex.enum';
 import { ErrorService } from 'src/app/shared/service/error/error.service';
 import { PublicationService } from '../../publication/publication.service';
+import { AlertService } from 'src/app/shared/component/alert/alert.service';
+import { Alert, ALERT_TYPE } from 'src/app/shared/model/alert';
 
 @Component({
   selector: 'app-new-publication',
@@ -28,6 +30,7 @@ export class NewPublicationComponent {
     private container: ElementRef,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public _errorFieldService: ErrorService,
+    private alert: AlertService,
   ) {
     newPublicationRef.disableClose = true;
     this.spinner = false;
@@ -49,7 +52,14 @@ export class NewPublicationComponent {
         this.refresh();
       },
       (error) => {
-        console.error(error);
+        console.log(error);
+        const alert: Alert = {
+          title: 'Failed',
+          message: 'error',
+          type: ALERT_TYPE.ERROR,
+        };
+        this.alert.newAlert(alert);
+        this.container.nativeElement.children[0].classList.remove('loading');
         this.spinner = false;
       },
     );

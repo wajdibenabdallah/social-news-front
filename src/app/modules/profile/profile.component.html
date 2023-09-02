@@ -26,6 +26,7 @@
                     class="search-title"
                     *ngFor="let publication of searchPublications$ | async"
                     [value]="publication.title"
+                    (click)="clickSearchResult(publication.title)"
                   >
                     <span [innerHTML]="publication.title | highlight: search.value"></span>
                   </mat-option>

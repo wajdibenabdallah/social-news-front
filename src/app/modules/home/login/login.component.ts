@@ -6,6 +6,7 @@ import { ALERT_TYPE, Alert } from 'src/app/shared/model/alert';
 import { AlertService } from 'src/app/shared/component/alert/alert.service';
 import { ErrorService } from 'src/app/shared/service/error/error.service';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { login } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
 })
 export class LoginComponent {
   private form = this.fb.group({
-    email: new FormControl('', Validators.required),
+    email: new FormControl(login.email, Validators.required),
     password: ['', Validators.required],
   });
 
