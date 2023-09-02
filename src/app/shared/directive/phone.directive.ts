@@ -11,7 +11,7 @@ export class PhoneDirective implements OnInit {
   }
 
   @HostListener('keydown', ['$event']) onKeyOver(event: KeyboardEvent) {
-    if (isNaN(parseInt(event.key, 10)) && event.code !== 'Backspace') {
+    if (isNaN(parseInt(event.key, 10)) && !['Backspace', 'Tab'].includes(event.code)) {
       event.preventDefault();
     }
     this.format();

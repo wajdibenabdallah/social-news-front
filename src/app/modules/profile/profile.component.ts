@@ -1,14 +1,13 @@
 import { ProfileService } from './profile.service';
 import { from, Observable } from 'rxjs';
 import { PublicationService } from './publication/publication.service';
-import { AuthGuardService } from '../../core/guard/auth-guard.service';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Publication } from 'src/app/shared/model/publication';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPublicationComponent } from './modal/new-publication/new-publication.component';
 import { User } from 'src/app/shared/model/user';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { debounceTime, switchMap, tap, mergeMap } from 'rxjs/operators';
+import { FormControl, FormBuilder } from '@angular/forms';
+import { debounceTime, tap, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',

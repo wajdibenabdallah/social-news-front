@@ -21,14 +21,11 @@ export class NewPublicationComponent {
   spinner: boolean;
   displayImage: any;
 
-  @ViewChild('removableInput') private removableInput = null;
-
   constructor(
     private fb: FormBuilder,
     private service: PublicationService,
     private newPublicationRef: MatDialogRef<NewPublicationComponent>,
     private container: ElementRef,
-    // todo
     @Inject(MAT_DIALOG_DATA) public data: any,
     public _errorFieldService: ErrorService,
   ) {
@@ -48,10 +45,13 @@ export class NewPublicationComponent {
     }
     this.service.post(formDataPublication).subscribe(
       () => {
-        this.onCancel();
+        this.cancel();
         this.refresh();
       },
-      (error) => console.error(error),
+      (error) => {
+        console.error(error);
+        this.spinner = false;
+      },
     );
   }
 
@@ -59,7 +59,7 @@ export class NewPublicationComponent {
     window.location.reload();
   }
 
-  onCancel(): void {
+  cancel(): void {
     this.newPublicationRef.close();
   }
 
